@@ -123,7 +123,7 @@
   border: none;
   color: white;
   padding: 10px 20px;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   display: inline-block;
   border-radius: 16px;
