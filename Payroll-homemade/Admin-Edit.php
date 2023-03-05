@@ -8,110 +8,203 @@
   <title>Document</title>
 </head>
 <style>
- /* MODAL CONTENT TERM & CONDITION */
- .modal {
-  display: block; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+  /* MODAL CONTENT TERM & CONDITION */
+  .modal {
+    display: block;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
 
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-  text-align:left;
-}
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    text-align: left;
+  }
 
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {
+      top: -300px;
+      opacity: 0
+    }
 
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
+    to {
+      top: 0;
+      opacity: 1
+    }
+  }
 
-/* The Close Button */
-.close {
-  color: black;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+  @keyframes animatetop {
+    from {
+      top: -300px;
+      opacity: 0
+    }
 
-.close:hover,
-.close:focus {
-  color: red;
-  text-decoration: none;
-  cursor: pointer;
-}
+    to {
+      top: 0;
+      opacity: 1
+    }
+  }
 
-.modal-header {
-  padding: 2px 10px;
-  background-color: #64bcf4;
-  color: black;
-  text-align:center;
-  font-size:20px;
-}
+  /* The Close Button */
+  .close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
 
-.modal-body {
- padding: 2px 16px;
- text-align: center;
-}
-.modal-footer {
-  padding: 2px 16px;
-  background-color: #D3D3D3;
-  color: white;
-}
-    input[type=text]{
-  width: 100;
-  padding: 10px;
-  margin: 5px 0 10px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-  font-size: 16px;
-}
-      input.updatebtn {
-  background-color: #64bcf4;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 16px;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
+  .close:hover,
+  .close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-      input.updatebtn:hover {
-          background-color: red;
-          border: 1px solid black;
-      }
+  .modal-header {
+    padding: 2px 10px;
+    background-color: #64bcf4;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+  }
 
+  .modal-body {
+    padding: 2px 16px;
+    text-align: center;
+  }
 
+  .modal-footer {
+    padding: 2px 16px;
+    background-color: #D3D3D3;
+    color: white;
+  }
+
+  input[type=text] {
+    width: 100;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    font-size: 16px;
+  }
+
+  input.updatebtn {
+    background-color: #64bcf4;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 16px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  input.updatebtn:hover {
+    background-color: red;
+    border: 1px solid black;
+  }
+
+  /* CSS Button Attendance */
+  .button-19 {
+    appearance: button;
+    background-color: #1899D6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: din-round, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin-top: 1%;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateX(850%);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 10%;
+  }
+
+  .button-19:after {
+    background-clip: padding-box;
+    background-color: #1CB0F6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+
+  .button-19:main,
+  .button-19:focus {
+    user-select: auto;
+  }
+
+  .button-19:hover:not(:disabled) {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+  }
+
+  .button-19:disabled {
+    cursor: auto;
+  }
+
+  .add {
+    text-decoration: none;
+    color: black;
+    word-break: break-word;
+    white-space: normal;
+  }
 </style>
+
 <body>
   <!-- EDIT MODAL -->
   <div id="myModal" class="modal">
@@ -122,6 +215,11 @@
         <span class="close">&times;</span>
         <h2>RECORD UPDATE</h2>
       </div>
+
+      <a href="Admin-Attendance.php?id=<?php echo $_GET['id']?>" name="add-emplo">
+      <button class="button-19 add" role="button"><i class="fa fa-eye"></i>Attendance Sheet</button>
+    </a>
+
       <div class="modal-body">
         <?php
         $Servername = "localhost";
@@ -136,20 +234,18 @@
           $rowdb = mysqli_fetch_array($updateData);
           if ($rowdb) {
             echo "<form action='Admin-Crud.php' method='post'>";
-			echo "Employee ID: "  . "<input type=text name = Empid disabled value='$rowdb[0]'> <br>";
+            echo "Employee ID: "  . "<input type=text name = Empid disabled value='$rowdb[0]'> <br>";
             echo "Employee Name: " . "<input type=text name = EmpName value='$rowdb[1]'> <br>";
             echo "Hours Work: " . "<input type=text name = EmpHRW value='$rowdb[2]'> <br>";
             echo "Overtime: " . "<input type=text name = EmpOver value='$rowdb[3]'> <br>";
             echo "Deduction: " . "<input type=text name = EmpDec value='$rowdb[4]'> <br>";
             echo "Basic Rate: " . "<input type=text name= EmpBR value='$rowdb[5]'> <br>";
-			
-		    echo "<input type=hidden name='EmpID' value='$id'><br>";
+
+            echo "<input type=hidden name='EmpID' value='$id'><br>";
             echo "<p><input type='submit' name='EmpEdit' value='Update' class= 'updatebtn' /> </p></form>";
           } else
             echo "No record found...";
         }  ?>
-
-
 
       </div>
       <div class="modal-footer">

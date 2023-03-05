@@ -109,33 +109,35 @@
     background-color: #D3D3D3;
     color: white;
   }
-      input[type=text]{
-  width: 100;
-  padding: 10px;
-  margin: 5px 0 10px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-  font-size: 16px;
-}
-     input.btn {
-  background-color: #64bcf4;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 16px;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
 
-      input.btn:hover {
-          background-color: red;
-          border: 1px solid black;
-      }
+  input[type=text] {
+    width: 100;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    font-size: 16px;
+  }
+
+  input.btn {
+    background-color: #64bcf4;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 16px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  input.btn:hover {
+    background-color: red;
+    border: 1px solid black;
+  }
 </style>
 
 <body>
@@ -146,24 +148,53 @@
     <div class="modal-content">
       <div class="modal-header">
         <span class="close">&times;</span>
-        <h2>ADD NEW EMPLOYEE</h2>
+        <h2>Attendance Sheet</h2>
       </div>
       <div class="modal-body">
-        <?php
-        $Servername = "localhost";
-        $username = "root";
-        $password = "";
-        $conn = new mysqli($Servername, $username, $password) or die("Could Not Connect to Database");
+        <table>
+          <tr>
+            <th>Emp_Id</th>
+            <th>Emp_Name</th>
+            <th>Time In</th>
+            <th>Time Out</th>
+            <th>Date</th>
+          </tr>
 
-        echo "<form action='Admin-Crud.php' method='post'>";
-        echo "Employee ID: " . "<input type=hidden name = AEmpId> <br>";
-        echo "Employee Name:" . "<input type=text name = AEmpName> <br>";
-        echo "Hours Work: " . "<input type=text name = AEmpHRW> <br>";
-        echo "Overtime: " . "<input type=text name = AEmpOT> <br>";
-        echo "Deduction: " . "<input type=text name= AEmpDTN> <br>";
-        echo "Basic Rate: " . "<input type=text name= AEmpBSR> <br>";
-        echo "<input type='submit' name='Add_Employee' value='+ADD' class= 'btn'>";
-        echo "<input type=submit name='cancel' value='CANCEL' class= 'btn'> </form>";
+          <?php
+          $Servername = "localhost";
+          $username = "root";
+          $password = "";
+          $TextNRF = "";
+          $conn = new mysqli($Servername, $username, $password) or die("Could Not Connect to Database");
+          $id = $_GET['id'];
+          $query = "sELECT * FROM payroll_db.attendance_sheet_emp where Emp_Id = '$id'";
+          $AttendanceData = mysqli_query($conn, $query);
+          if (mysqli_num_rows($AttendanceData) == 0) {
+            $TextNRF = "Attendance Not Found";
+          } else {
+            while ($row = mysqli_fetch_array($AttendanceData)) {
+          ?>
+              <tr>
+                <td><?php echo $row['Emp_Id'] ?></td>
+                <td><?php echo $row['Emp_Name'] ?></td>
+                <td><?php echo $row['Time In'] ?></td>
+                <td><?php echo $row['Time Out'] ?></td>
+                <td><?php echo $row['Date'] ?></td>
+            <?php
+            }
+          }
+            ?>
+              </tr>
+
+              <tr>
+                <th>Attended</th>
+                <th>Absent</th>
+                <th>Late</th>
+              </tr>
+        </table>
+
+        <?php
+        echo $TextNRF;
         ?>
 
       </div>
