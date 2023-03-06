@@ -203,8 +203,7 @@
           <ul>
               <li>Incentives (Honorarium and Commissions): <input type=text name = EmpCa> </li>
               <li>Midterm Year/ Annual Bonus: <input type=text name = EmpCa> </li>
-              <li>Incentives (Honorarium and Commissions): <input type=text name = EmpCa> </li>
-              <li>Midterm Year/ Annual Bonus: <input type=text name = EmpCa> </li>
+        
             </ul>
         </div>
         <h5> Net Salary: </h5>
