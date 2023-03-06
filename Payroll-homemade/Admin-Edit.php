@@ -174,7 +174,7 @@
     border: solid transparent;
     border-radius: 16px;
     border-width: 0 0 4px;
-    bottom: -4px;
+    bottom: 0px;
     content: "";
     left: 0;
     position: absolute;
@@ -202,6 +202,8 @@
     color: black;
     word-break: break-word;
     white-space: normal;
+    position: relative;
+    left: -6%;
   }
 </style>
 
@@ -216,10 +218,12 @@
         <h2>RECORD UPDATE</h2>
       </div>
 
-      <a href="Admin-Attendance.php?id=<?php echo $_GET['id']?>" name="add-emplo">
-      <button class="button-19 add" role="button"><i class="fa fa-eye"></i>Attendance Sheet</button>
-    </a>
-
+      <a href="Admin-Attendance.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
+        <button class="button-19 add" role="button"><i class="fa fa-eye"></i>Attendance Sheet</button>
+      </a>
+      <a href="Admin-Transaction.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
+        <button class="button-19 add" role="button"><i class="fa fa-eye"></i>Transaction Sheet</button>
+      </a>
       <div class="modal-body">
         <?php
         $Servername = "localhost";

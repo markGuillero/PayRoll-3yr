@@ -341,7 +341,7 @@ function filterTable($query)
         if (mysqli_num_rows($search_result) == 0) {
           $TextNRF = "Records Empty Found";
         } else {
-          while ($row = mysqli_fetch_array($search_result)) {
+          while ($row = mysqli_fetch_array($search_result)){
         ?>
             <tr>
               <td><?php echo $row['Employee_ID'] ?></td>
@@ -355,7 +355,6 @@ function filterTable($query)
               </td>
             </tr>
         <?php
-
           }
         }
         ?>
