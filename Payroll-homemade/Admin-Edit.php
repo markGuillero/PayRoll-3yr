@@ -45,7 +45,7 @@
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
-    text-align: left;
+    text-align: center;
   }
 
   /* Add Animation */
@@ -101,6 +101,7 @@
     text-align: center;
   }
 
+
   .modal-footer {
     padding: 2px 16px;
     background-color: #D3D3D3;
@@ -138,49 +139,22 @@
 
   /* CSS Button Attendance */
   .button-19 {
-    appearance: button;
-    background-color: #1899D6;
-    border: solid transparent;
-    border-radius: 16px;
-    border-width: 0 0 4px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-family: din-round, sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .8px;
-    line-height: 20px;
-    margin-top: 1%;
-    outline: none;
-    overflow: visible;
-    padding: 13px 16px;
+    background-color: #64bcf4;
+    border: none;
+    color: white;
+    padding: 10px 20px;
     text-align: center;
-    text-transform: uppercase;
-    touch-action: manipulation;
-    transform: translateX(850%);
-    transition: filter .2s;
-    user-select: none;
-    -webkit-user-select: none;
-    vertical-align: middle;
-    white-space: nowrap;
-    width: 10%;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 16px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
   }
 
-  .button-19:after {
-    background-clip: padding-box;
-    background-color: #1CB0F6;
-    border: solid transparent;
-    border-radius: 16px;
-    border-width: 0 0 4px;
-    bottom: 0px;
-    content: "";
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: -1;
+  .button-19:hover {
+    background-color: red;
+    border: 1px solid black;
   }
 
   .button-19:main,
@@ -203,7 +177,7 @@
     word-break: break-word;
     white-space: normal;
     position: relative;
-    left: -6%;
+    left: 0%;
   }
 </style>
 
@@ -218,44 +192,52 @@
         <h2>RECORD UPDATE</h2>
       </div>
 
-      <a href="Admin-Attendance.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
-        <button class="button-19 add" role="button"><i class="fa fa-eye"></i>Attendance Sheet</button>
-      </a>
-      <a href="Admin-Transaction.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
-        <button class="button-19 add" role="button"><i class="fa fa-eye"></i>Transaction Sheet</button>
-      </a>
-      <div class="modal-body">
-        <?php
-        $Servername = "localhost";
-        $username = "root";
-        $password = "";
-        $conn = new mysqli($Servername, $username, $password) or die("Could Not Connect to Database");
+      <div class="modal-body-foot">
+        <div class="modal-body">
+          <?php
+          $Servername = "localhost";
+          $username = "root";
+          $password = "";
+          $conn = new mysqli($Servername, $username, $password) or die("Could Not Connect to Database");
 
-        if (isset($_GET['id'])) {
-          $id = $_GET['id'];
-          $query = "sELECT * FROM payroll_db.employee_data where Employee_ID = '$id'";
-          $updateData = mysqli_query($conn, $query);
-          $rowdb = mysqli_fetch_array($updateData);
-          if ($rowdb) {
-            echo "<form action='Admin-Crud.php' method='post'>";
-            echo "Employee ID: "  . "<input type=text name = Empid disabled value='$rowdb[0]'> <br>";
-            echo "Employee Name: " . "<input type=text name = EmpName value='$rowdb[1]'> <br>";
-            echo "Hours Work: " . "<input type=text name = EmpHRW value='$rowdb[2]'> <br>";
-            echo "Overtime: " . "<input type=text name = EmpOver value='$rowdb[3]'> <br>";
-            echo "Deduction: " . "<input type=text name = EmpDec value='$rowdb[4]'> <br>";
-            echo "Basic Rate: " . "<input type=text name= EmpBR value='$rowdb[5]'> <br>";
+          if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $query = "sELECT * FROM payroll_db.employee_data where Employee_ID = '$id'";
+            $updateData = mysqli_query($conn, $query);
+            $rowdb = mysqli_fetch_array($updateData);
+            if ($rowdb) {
+              echo "<form action='Admin-Crud.php' method='post'>";
+              echo "Employee ID: "  . "<input type=text name = Empid disabled value='$rowdb[0]'> <br>";
+              echo "Employee Name: " . "<input type=text name = EmpName value='$rowdb[1]'> <br>";
+              echo "Hours Work: " . "<input type=text name = EmpHRW value='$rowdb[2]'> <br>";
+              echo "Overtime: " . "<input type=text name = EmpOver value='$rowdb[3]'> <br>";
+              echo "Deduction: " . "<input type=text name = EmpDec value='$rowdb[4]'> <br>";
+              echo "Basic Rate: " . "<input type=text name= EmpBR value='$rowdb[5]'> <br>";
 
-            echo "<input type=hidden name='EmpID' value='$id'><br>";
-            echo "<p><input type='submit' name='EmpEdit' value='Update' class= 'updatebtn' /> </p></form>";
-          } else
-            echo "No record found...";
-        }  ?>
+              echo "<input type=hidden name='EmpID' value='$id'><br>";
+              echo "<p><input type='submit' name='EmpEdit' value='Update' class= 'updatebtn' /> </p></form>";
+          ?>
 
+              <a href="Admin-Attendance.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
+                <button class="button-19 add" role="button"><i class="fa fa-eye"></i>Attendance Sheet</button>
+                <a href="Admin-Transaction.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
+                  <button class="button-19 add" role="button"><i class="fa fa-eye"></i>Transaction Sheet</button>
+                </a>
+
+            <?php
+            } else
+              echo "No record found...";
+          }  ?>
+
+
+        </div>
       </div>
+
       <div class="modal-footer">
         <h3>PAYROLL SYSTEM</h3>
       </div>
     </div>
+  </div>
   </div>
 </body>
 

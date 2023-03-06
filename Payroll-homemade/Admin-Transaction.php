@@ -180,8 +180,8 @@
       <div class="modal-body">
 
         <div class="Salary">
-        <h5>Employee Name: <?php echo $TData['Employee_Name']?> </h5>
-          <h5>Gross Salary:</h5>
+        <h3>Employee Name: <?php echo $TData['Employee_Name']?> </h3>
+          <h4>Gross Salary:</h4>
           <ul>
               <li>Hours Work: <?php echo $TData['Hours_Work']?></li>
               <li>Overtime: <?php echo $TData['Overtime']?></li>
@@ -190,23 +190,22 @@
         </div>
 
         <div class="Deductions">
-          <h5>Deductions: </h5>
+          <h4>Deductions: </h4>
           <ul>
-              <li>Attendance Deductions: <input type=text name = AttD></li>
-              <li>Government Deductions: <input type=text name = GovD></li>
-              <li>Employee Cash advances:<input type=text name = EmpCa> </li>
+              <li>Attendance Deductions: <input type=text name = AttD disabled></li>
+              <li>Government Deductions: <input type=text name = GovD disabled></li>
+              <li>Employee Cash advances:<input type=text name = EmpCa disabled> </li>
             </ul>
         </div>
 
         <div class="Adhoc-Pay">
-          <h5>Adhoc-Pay:</h5>
+          <h4>Adhoc-Pay:</h4>
           <ul>
-              <li>Incentives (Honorarium and Commissions): <input type=text name = EmpCa> </li>
-              <li>Midterm Year/ Annual Bonus: <input type=text name = EmpCa> </li>
-        
+              <li>Incentives (Honorarium and Commissions): <input type=text name = EmpCa disabled> </li>
+              <li>Midterm Year/ Annual Bonus: <input type=text name = EmpCa disabled> </li>
             </ul>
         </div>
-        <h5> Net Salary: </h5>
+        <h3> Net Salary: </h3>
     
     </div>
     <div class="modal-footer">

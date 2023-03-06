@@ -138,6 +138,45 @@
     background-color: red;
     border: 1px solid black;
   }
+
+  /* container table design */
+  .container {
+    position: relative;
+    max-width: 81rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 3rem;
+    z-index: 10;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .container .table-selector {
+    width: 100%;
+    margin: auto;
+    margin-top: 3%;
+    background-color: white;
+  }
+
+  .container .table-selector table {
+    border: 4px solid lightblue;
+    padding: 2%;
+    width: 100%;
+    margin-bottom: 1%;
+  }
+
+  .container .table-selector table th {
+    padding: 1%;
+
+  }
+
+  .container .table-selector table td {
+    text-align: center;
+  }
 </style>
 
 <body>
@@ -147,56 +186,85 @@
     <!-- Modal content -->
     <div class="modal-content">
       <div class="modal-header">
+
         <span class="close">&times;</span>
         <h2>Attendance Sheet</h2>
       </div>
       <div class="modal-body">
-        <table>
-          <tr>
-            <th>Emp_Id</th>
-            <th>Emp_Name</th>
-            <th>Time In</th>
-            <th>Time Out</th>
-            <th>Date</th>
-          </tr>
 
-          <?php
-          $Servername = "localhost";
-          $username = "root";
-          $password = "";
-          $TextNRF = "";
-          $conn = new mysqli($Servername, $username, $password) or die("Could Not Connect to Database");
-          $id = $_GET['id'];
-          $query = "sELECT * FROM payroll_db.attendance_sheet_emp where Emp_Id = '$id'";
-          $AttendanceData = mysqli_query($conn, $query);
-          if (mysqli_num_rows($AttendanceData) == 0) {
-            $TextNRF = "Attendance Not Found";
-          } else {
-            while ($row = mysqli_fetch_array($AttendanceData)) {
-          ?>
+        <div class="container">
+          <div class="table-selector">
+
+            <table>
               <tr>
-                <td><?php echo $row['Emp_Id'] ?></td>
-                <td><?php echo $row['Emp_Name'] ?></td>
-                <td><?php echo $row['Time In'] ?></td>
-                <td><?php echo $row['Time Out'] ?></td>
-                <td><?php echo $row['Date'] ?></td>
+                <th>Emp_Id</th>
+                <th>Emp_Name</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+                <th>Date</th>
+              </tr>
+
+              <?php
+              $Servername = "localhost";
+              $username = "root";
+              $password = "";
+              $TextNRF = "";
+              $conn = new mysqli($Servername, $username, $password) or die("Could Not Connect to Database");
+              $id = $_GET['id'];
+              $query = "sELECT * FROM payroll_db.attendance_sheet_emp where Emp_Id = '$id'";
+              $AttendanceData = mysqli_query($conn, $query);
+              if (mysqli_num_rows($AttendanceData) == 0) {
+                $TextNRF = "Attendance Not Found";
+              } else {
+                while ($row = mysqli_fetch_array($AttendanceData)) {
+              ?>
+
+                  <tr>
+                    <td><?php echo $row['Emp_Id'] ?></td>
+                    <td><?php echo $row['Emp_Name'] ?></td>
+                    <td><?php echo $row['Time In'] ?></td>
+                    <td><?php echo $row['Time Out'] ?></td>
+                    <td><?php echo $row['Date'] ?></td>
+                <?php
+                  $time1 = "09:00:00";
+                  $PCounter = 0;
+                  $LateCounter = 0;
+                  $AbsentCounter = 0;
+                  $time1_datetime = DateTime::createFromFormat('H:i:s', $time1);
+                  $time_in_datetime = DateTime::createFromFormat('H:i:s', $row['Time In']);
+                  if ($time1_datetime < $time_in_datetime) {
+                    $LateCounter++;
+                  }
+
+                  if (is_null($row['Time In'])) {
+                    $AbsentCounter++;
+                  }
+
+                  if (!is_null($row['Time In'])) {
+                    $PCounter++;
+                  }
+                }
+              }
+
+                ?>
+                  </tr>
+
+                  <table>
+                    <tr>
+                      <th>Present: <?php echo $PCounter ?></th>
+                      <th>Absent: <?php echo $AbsentCounter ?> </th>
+                      <th>Late: <?php echo $LateCounter ?></th>
+                    </tr>
+                  </table>
+
+            </table>
+
             <?php
-            }
-          }
+            echo $TextNRF;
             ?>
-              </tr>
 
-              <tr>
-                <th>Attended</th>
-                <th>Absent</th>
-                <th>Late</th>
-              </tr>
-        </table>
-
-        <?php
-        echo $TextNRF;
-        ?>
-
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <h3>PAYROLL SYSTEM</h3>
