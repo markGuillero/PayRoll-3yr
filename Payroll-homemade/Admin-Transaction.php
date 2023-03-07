@@ -192,17 +192,17 @@
         <div class="Deductions">
           <h4>Deductions: </h4>
           <ul>
-              <li>Attendance Deductions: <input type=text name = AttD disabled></li>
-              <li>Government Deductions: <input type=text name = GovD disabled></li>
-              <li>Employee Cash advances:<input type=text name = EmpCa disabled> </li>
+              <li>Attendance Deductions: <input type= text name = AttD ></li>
+              <li>Government Deductions: <input type= text name = GovD ></li>
+              <li>Employee Cash advances:<input type= text name = EmpCa > </li>
             </ul>
         </div>
 
         <div class="Adhoc-Pay">
           <h4>Adhoc-Pay:</h4>
           <ul>
-              <li>Incentives (Honorarium and Commissions): <input type=text name = EmpCa disabled> </li>
-              <li>Midterm Year/ Annual Bonus: <input type=text name = EmpCa disabled> </li>
+              <li>Incentives (Honorarium and Commissions): <input type=text name = EmpCa > </li>
+              <li>Midterm Year/ Annual Bonus: <input type=text name = EmpCa > </li>
             </ul>
         </div>
         <h3> Net Salary: </h3>
