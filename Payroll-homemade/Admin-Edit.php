@@ -8,11 +8,12 @@
   <title>Document</title>
 </head>
 <style>
-  body{
+  body {
     margin: 0;
-    padding:0;
-    
+    padding: 0;
+
   }
+
   /* MODAL CONTENT TERM & CONDITION */
   .modal {
     display: block;
@@ -185,44 +186,45 @@
     position: relative;
     left: 0%;
   }
-/* CSS */
-.button-37 {
-  background-color: #13aa52;
-  border: 1px solid #13aa52;
-  border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  outline: none;
-  outline: 0;
-  padding: 10px 25px;
-  text-align: center;
-  transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  position: absolute;
-  z-index:1;
-  left:85%;
-  top:15%;
-  display: inline;
-}
 
-.button-37:hover {
-  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
-  transform: translateY(-2px);
-}
-
-@media (min-width: 768px) {
+  /* CSS */
   .button-37 {
-    padding: 10px 30px;
+    background-color: #13aa52;
+    border: 1px solid #13aa52;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    position: absolute;
+    z-index: 1;
+    left: 85%;
+    top: 15%;
+    display: inline;
   }
-}
+
+  .button-37:hover {
+    box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+    transform: translateY(-2px);
+  }
+
+  @media (min-width: 768px) {
+    .button-37 {
+      padding: 10px 30px;
+    }
+  }
 </style>
 
 <body>
@@ -238,10 +240,10 @@
 
       <div class="modal-body-foot">
         <div class="modal-body">
-        <a href="Admin-PaySlip.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
-        <button class="button-37" role="button"><i class="bi bi-book-half"></i>GENERATE PAYSLIP</button>
-  
-              </a>
+          <a href="Admin-PaySlip.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
+            <button class="button-37" role="button"><i class="bi bi-book-half"></i>GENERATE PAYSLIP</button>
+
+          </a>
           <?php
           $Servername = "localhost";
           $username = "root";
@@ -250,30 +252,31 @@
 
           if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $query = "sELECT * FROM payroll_db.employee_data where Employee_ID = '$id'";
+            $query = "sELECT * FROM payroll_db.employee_data Where Employee_ID = '$id'";
             $updateData = mysqli_query($conn, $query);
             $rowdb = mysqli_fetch_array($updateData);
             if ($rowdb) {
               echo "<form action='Admin-Crud.php' method='post'>";
-              echo "Employee ID: "  . "<input type=text name = Empid disabled value='$rowdb[0]'> <br>";
-              echo "Employee Name: " . "<input type=text name = EmpName value='$rowdb[1]'> <br>";
-              echo "Hours Work: " . "<input type=text name = EmpHRW value='$rowdb[2]'> <br>";
-              echo "Overtime: " . "<input type=text name = EmpOver value='$rowdb[3]'> <br>";
-              echo "Deduction: " . "<input type=text name = EmpDec value='$rowdb[4]'> <br>";
-              echo "Basic Rate: " . "<input type=text name= EmpBR value='$rowdb[5]'> <br>";
+              echo "Employee ID: "  . "<input type=text name = Empid disabled value= $rowdb[Employee_ID]> <br>";
+              echo "Employee Name: " . "<input type=text name = EmpName value=$rowdb[Employee_Name]> <br>";
+              echo "Hours Work: " . "<input type=text name = EmpHRW value=$rowdb[Hours_Work]> <br>";
+              echo "Overtime: " . "<input type=text name = EmpOver value=$rowdb[Overtime]> <br>";
+              echo "Deduction: " . "<input type=text name = EmpDec value=$rowdb[Deduction]> <br>";
+              echo "Basic Rate: " . "<input type=text name= EmpBR value=$rowdb[Basic_Rate]> <br>";
 
               echo "<input type=hidden name='EmpID' value='$id'><br>";
               echo "<p><input type='submit' name='EmpEdit' value='Update' class= 'updatebtn' /> </p></form>";
           ?>
 
               <a href="Admin-Attendance.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
-                <button class="button-19 add" role="button"><i class="fa fa-eye"></i>Attendance Sheet</button>
+                <button class="button-19 add" role="button">Attendance Sheets</button>
               </a>
-                <a href="Admin-Transaction.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
-                  <button class="button-19 add" role="button"><i class="fa fa-eye"></i>Transaction Sheet</button>
-                </a>
 
-            <?php
+              <a href="Admin-Transaction.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
+                <button class="button-19 add" role="button">Transaction Sheet</button>
+              </a>
+
+          <?php
             } else
               echo "No record found...";
           }  ?>

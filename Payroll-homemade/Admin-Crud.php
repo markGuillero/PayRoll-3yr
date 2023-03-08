@@ -335,6 +335,8 @@ function filterTable($query)
           <th>Overtime</th>
           <th>Deduction</th>
           <th>Basic Rate</th>
+          <th>Salary</th>
+
           <th colspan="2">Operations</th>
         </tr>
         <?php
@@ -350,8 +352,10 @@ function filterTable($query)
               <td><?php echo $row['Overtime'] ?></td>
               <td><?php echo $row['Deduction'] ?></td>
               <td><?php echo $row['Basic_Rate'] ?></td>
-              <td class="Operation"><a href="Admin-Edit.php?id=<?php echo $row[0] ?>" class="btn">EDIT</a>
-                <a href="Admin-Delete.php?id=<?php echo $row[0] ?>" class="btn">DELETE</a>
+              <td><?php echo $row['Salary'] ?></td>
+
+              <td class="Operation"><a href="Admin-Edit.php?id=<?php echo $row['Employee_ID'] ?>" class="btn">EDIT</a>
+                <a href="Admin-Delete.php?id=<?php echo $row['Employee_ID'] ?>" class="btn">DELETE</a>
               </td>
             </tr>
         <?php

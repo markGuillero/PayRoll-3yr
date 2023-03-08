@@ -166,6 +166,28 @@
       $query = "sELECT * FROM payroll_db.employee_data where Employee_ID = '$id'";
       $TrasactionData = mysqli_query($conn, $query);
       $TData = mysqli_fetch_array($TrasactionData);
+      
+      $queryAtt = "sELECT * FROM payroll_db.attendance_sheet_emp Where Emp_Id = '$id'";
+      $AttendanceData = mysqli_query($conn, $queryAtt);
+
+      $LateCounter = 0;
+      $AbsentCounter = 0;
+      $time1 = "09:00:00";
+
+    
+     
+      while ($rowAtt = mysqli_fetch_array($AttendanceData)) {
+        $time1_datetime = DateTime::createFromFormat('H:i:s', $time1);
+        $time_in_datetime = DateTime::createFromFormat('H:i:s', $rowAtt['Time In']);
+
+      if (is_null($rowAtt['Time In'])) {
+        $AbsentCounter++;
+      }
+
+      if ($time1_datetime < $time_in_datetime) {
+        $LateCounter++;
+      }
+    }
       ?>
   <!-- EDIT MODAL -->
   <div id="myModal" class="modal">
@@ -190,12 +212,16 @@
         </div>
 
         <div class="Deductions">
-          <h4>Deductions: </h4>
+          <h4>Deductions:<?php echo $LateCounter?> </h4>
           <ul>
+            <form>
               <li>Attendance Deductions: <input type= text name = AttD ></li>
               <li>Government Deductions: <input type= text name = GovD ></li>
               <li>Employee Cash advances:<input type= text name = EmpCa > </li>
+              <input type = "submit" class = "button-19 add" name = "submitDEC" value = "DEDUCT"> 
+            </form>
             </ul>
+            
         </div>
 
         <div class="Adhoc-Pay">
