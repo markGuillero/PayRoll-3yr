@@ -213,6 +213,12 @@
               $id = $_GET['id'];
               $query = "sELECT * FROM payroll_db.attendance_sheet_emp where Emp_Id = '$id'";
               $AttendanceData = mysqli_query($conn, $query);
+
+              $time1 = "09:00:00";
+              $PCounter = 0;
+              $LateCounter = 0;
+              $AbsentCounter = 0;
+              
               if (mysqli_num_rows($AttendanceData) == 0) {
                 $TextNRF = "Attendance Not Found";
               } else {
@@ -226,26 +232,23 @@
                     <td><?php echo $row['Time Out'] ?></td>
                     <td><?php echo $row['Date'] ?></td>
                 <?php
-                  $time1 = "09:00:00";
-                  $PCounter = 0;
-                  $LateCounter = 0;
-                  $AbsentCounter = 0;
                   $time1_datetime = DateTime::createFromFormat('H:i:s', $time1);
                   $time_in_datetime = DateTime::createFromFormat('H:i:s', $row['Time In']);
-                  if ($time1_datetime < $time_in_datetime) {
+                  if (!is_null($row['Time In']) && $time1_datetime < $time_in_datetime) {
                     $LateCounter++;
-                  }
-
-                  if (is_null($row['Time In'])) {
+                }
+            
+                // Check if the employee was absent
+                if (is_null($row['Time In'])) {
                     $AbsentCounter++;
-                  }
-
-                  if (!is_null($row['Time In'])) {
+                }
+            
+                // If the employee was not absent and not late, they were present
+                if (!is_null($row['Time In']) && $time1_datetime >= $time_in_datetime) {
                     $PCounter++;
-                  }
                 }
               }
-
+            }
                 ?>
                   </tr>
 
