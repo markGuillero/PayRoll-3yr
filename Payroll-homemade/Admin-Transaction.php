@@ -9,11 +9,12 @@
 </head>
 <style>
   /* MODAL CONTENT TERM & CONDITION */
-  body{
+  body {
     padding: 0;
     margin: 0;
 
   }
+
   .modal {
     display: block;
     /* Hidden by default */
@@ -153,42 +154,91 @@
     text-align: left;
     font-size: 25px;
   }
+
+
+
+  /* CSS */
+  .button-42 {
+    background-color: initial;
+    background-image: linear-gradient(-180deg, #B4E9FF, #3896C7);
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Inter, -apple-system, system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+    height: 50px;
+    line-height: 40px;
+    outline: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    pointer-events: auto;
+    position: relative;
+    text-align: center;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 40%;
+    margin-top: -3%;
+    margin-bottom: 3%;
+    z-index: 9;
+    border: 0;
+    transition: box-shadow .2s;
+    color:black;
+  }
+
+  .button-42:hover {
+    box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
+  }
+
+  .NetS{
+    display: block;
+    margin-top:0%;
+    margin-right:4%;
+
+  }
 </style>
 
 <body>
-<?php
-      $Servername = "localhost";
-      $username = "root";
-      $password = "";
-      $TextNRF = "";
-      $conn = new mysqli($Servername, $username, $password) or die("Could Not Connect to Database");
-      $id = $_GET['id'];
-      $query = "sELECT * FROM payroll_db.employee_data where Employee_ID = '$id'";
-      $TrasactionData = mysqli_query($conn, $query);
-      $TData = mysqli_fetch_array($TrasactionData);
-      
-      $queryAtt = "sELECT * FROM payroll_db.attendance_sheet_emp Where Emp_Id = '$id'";
-      $AttendanceData = mysqli_query($conn, $queryAtt);
+  <?php
+  $Servername = "localhost";
+  $username = "root";
+  $password = "";
+  $TextNRF = "";
+  $conn = new mysqli($Servername, $username, $password) or die("Could Not Connect to Database");
+  $id = $_GET['id'];
+  $query = "sELECT * FROM payroll_db.employee_data where Employee_ID = '$id'";
+  $TrasactionData = mysqli_query($conn, $query);
+  $TData = mysqli_fetch_array($TrasactionData);
 
-      $LateCounter = 0;
-      $AbsentCounter = 0;
-      $time1 = "09:00:00";
+  $queryAtt = "sELECT * FROM payroll_db.attendance_sheet_emp Where Emp_Id = '$id'";
+  $AttendanceData = mysqli_query($conn, $queryAtt);
 
-    
-     
-      while ($rowAtt = mysqli_fetch_array($AttendanceData)) {
-        $time1_datetime = DateTime::createFromFormat('H:i:s', $time1);
-        $time_in_datetime = DateTime::createFromFormat('H:i:s', $rowAtt['Time In']);
+  $LateCounter = 0;
+  $AbsentCounter = 0;
 
-      if (is_null($rowAtt['Time In'])) {
+  $time1 = "09:00:00";
+  $LateDecPrice = 72.125;
+
+
+  while ($rowAtt = mysqli_fetch_array($AttendanceData)) {
+    $time1_datetime = DateTime::createFromFormat('H:i:s', $time1);
+    $time_in_datetime = DateTime::createFromFormat('H:i:s', $rowAtt['Time In']);
+
+    if (is_null($rowAtt['Time In'])) {
+      $AbsentCounter++;
+    }
+
+    if ($time1_datetime < $time_in_datetime) {
+      $LateCounter++;
+      if ($LateCounter++ == 3) {
         $AbsentCounter++;
       }
-
-      if ($time1_datetime < $time_in_datetime) {
-        $LateCounter++;
-      }
     }
-      ?>
+  }
+  ?>
   <!-- EDIT MODAL -->
   <div id="myModal" class="modal">
 
@@ -202,47 +252,54 @@
       <div class="modal-body">
 
         <div class="Salary">
-        <h3>Employee Name: <?php echo $TData['Employee_Name']?> </h3>
+          <h3>Employee Name: <?php echo $TData['Employee_Name'] ?> </h3>
           <h4>Gross Salary:</h4>
           <ul>
-              <li>Hours Work: <?php echo $TData['Hours_Work']?></li>
-              <li>Overtime: <?php echo $TData['Overtime']?></li>
-              <li>Basic Rate: <?php echo $TData['Basic_Rate']?></li>
-            </ul>
+            <li>Hours Work: <?php echo $TData['Hours_Work'] ?></li>
+            <li>Overtime: <?php echo $TData['Overtime'] ?></li>
+            <li>Basic Rate: <?php echo $TData['Basic_Rate'] ?></li>
+          </ul>
         </div>
 
         <div class="Deductions">
-          <h4>Deductions:<?php echo $LateCounter?> </h4>
+          <h4>Deductions: </h4>
           <ul>
-            <form>
-              <li>Attendance Deductions: <input type= text name = AttD ></li>
-              <li>Government Deductions: <input type= text name = GovD ></li>
-              <li>Employee Cash advances:<input type= text name = EmpCa > </li>
-              <input type = "submit" class = "button-19 add" name = "submitDEC" value = "DEDUCT"> 
-            </form>
-            </ul>
-            
+            <li>Attendance Deductions: <input type=text name=AttD value="<?php echo $LateDecPrice * $LateCounter ?>"></li>
+            <li>Government Deductions: <input type=text name=GovD value=0></li>
+            <li>Employee Cash advances:<input type=text name=EmpCa value=0> </li>
+          </ul>
+
         </div>
 
         <div class="Adhoc-Pay">
           <h4>Adhoc-Pay:</h4>
           <ul>
-              <li>Incentives (Honorarium and Commissions): <input type=text name = EmpCa > </li>
-              <li>Midterm Year/ Annual Bonus: <input type=text name = EmpCa > </li>
-            </ul>
+            <li>Incentives (Honorarium and Commissions): <input type=text name=Incent value=0> </li>
+            <li>Midterm Year/ Annual Bonus: <input type=text name=MidAnB value=0> </li>
+          </ul>
+
+          <form action="Admin-Crud.php" method="POST" onsubmit="calculateNetSalary()">
+  <input type="hidden" name="NetSalary" id="NetSalaryInput">
+  <input type="hidden" name="EmpIdT" value="<?php echo $TData['Employee_ID'] ?>">
+  
+  <h1 class="NetS">Net Salary: <span id="NetSalaryDisplay"></span></h1>
+  <input type="submit" class="button-42" role="button" name="NetSSub" value="Submit">
+</form>
         </div>
-        <h3> Net Salary: </h3>
-    
+
+
+      </div>
+      <div class="modal-footer">
+        <h3>PAYROLL SYSTEM</h3>
+      </div>
     </div>
-    <div class="modal-footer">
-      <h3>PAYROLL SYSTEM</h3>
-    </div>
-  </div>
   </div>
 </body>
 
 <script>
-  var modal = document.getElementById("myModal");
+
+
+var modal = document.getElementById("myModal");
   var span = document.getElementsByClassName("close")[0];
 
 
@@ -256,6 +313,42 @@
       window.location.href = "Admin-Crud.php";
     }
   }
+
+
+  function calculateNetSalary() {
+    // Get the values of the inputs
+    const attendanceDeductions = Number(document.getElementsByName('AttD')[0].value);
+    const governmentDeductions = Number(document.getElementsByName('GovD')[0].value);
+    const employeeCashAdvances = Number(document.getElementsByName('EmpCa')[0].value);
+    const incentives = Number(document.getElementsByName('Incent')[0].value);
+    const midtermAnnualBonus = Number(document.getElementsByName('MidAnB')[0].value);
+    const grossSalary = Number('<?php echo $TData['Basic_Rate'] ?>');
+
+    // Calculate the net salary
+    const totalDeductions = attendanceDeductions + governmentDeductions + employeeCashAdvances;
+    const adhocPay = incentives + midtermAnnualBonus;
+    const netSalary = grossSalary - totalDeductions + adhocPay;
+
+    // Display the net salary on the page
+    const netSalaryElement = document.querySelector('.NetS');
+    netSalaryElement.textContent = `Net Salary: ${netSalary}`;
+
+    document.getElementById("NetSalaryInput").value = netSalary.toFixed(2);
+
+// Display the net salary to the user
+document.getElementById("NetSalaryDisplay").textContent = "Php " + netSalary.toFixed(2);
+
+  }
+
+  // Set up event listeners to call the function whenever any of the input values change
+  const inputs = document.querySelectorAll('input[type="text"]');
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('input', calculateNetSalary);
+  }
+
+  // Call the function initially to calculate the net salary based on the initial input values
+  calculateNetSalary();
+
 </script>
 
 </body>

@@ -301,6 +301,15 @@ if (isset($_POST['searchSubmitfront'])) {
   $querySearchSelect = "sELECT * FROM payroll_db.employee_data;";
   $search_result = filterTable($querySearchSelect);
 }
+
+// Submit to Salary // from Admin Transaction
+if (isset($_POST['NetSSub'])) {
+  $netSalary = $_POST['NetSalary'];
+  $EmpIDT = $_POST['EmpIdT'];
+   $queryNetS = "uPDATE payroll_db.employee_data SET salary = $netSalary WHERE Employee_ID = $EmpIDT";
+   filterTable($queryNetS);
+}
+
 function filterTable($query)
 {
   $servername = "localhost";
@@ -311,6 +320,10 @@ function filterTable($query)
   $filter_Result = mysqli_query($conn, $query);
   return $filter_Result;
 }
+
+
+
+
 ?>
 
 <body>
