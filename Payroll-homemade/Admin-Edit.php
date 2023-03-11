@@ -240,7 +240,7 @@
 
       <div class="modal-body-foot">
         <div class="modal-body">
-          <a href="Admin-PaySlip.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
+          <a href="PDf-Payslip.php?id=<?php echo $_GET['id'] ?>" name="add-emplo" target="_blank">
             <button class="button-37" role="button"><i class="bi bi-book-half"></i>GENERATE PAYSLIP</button>
 
           </a>

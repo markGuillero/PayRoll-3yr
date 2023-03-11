@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dist/gutenberg.css">
+  <title>PaySlip</title>
+</head>
+<style>
+  #income {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin:auto;
+  }
+
+  #income td,
+  #income th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #income tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  #income tr:hover {
+    background-color: #ddd;
+  }
+
+  #income th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+</style>
+
+<body>
+  <br>
+  <center>
+    <h1>Pay Slip</h1>
+  </center>
+
+  <h2>Employee Id: {{ id }} </h2>
+  <h2>Employee Name: [name] </h2>
+  <h2>Date:  [date] </h2>
+  <br>
+  <table id="income">
+    <tr>
+      <th>Earnings</th>
+      <th>Deductions</th>
+    </tr>
+    <tr>
+      <td>Hours Work: [HRW]</td>
+      <td>Attendance Deduction: [ATTD]</td>
+    </tr>
+    <tr>
+      <td>Overtime: [OT]</td>
+      <td>Goverment Deduction: [GOVD]</td>
+    </tr>
+    <tr>
+      <td>Basic Rate: [BRR]</td>
+      <td>                </td>
+    </tr>
+    <tr>
+      <td>Incentives: [INCENT]</td>
+      <td>         </td>
+    </tr>
+    <tr>
+      <td>Bonus: [BBN]</td>
+      <td>      </td>
+    </tr>
+    <tr>
+      <td>      </td>
+      <td>      </td>
+    </tr>
+    <tr>
+      <td colspan="2">NetSalary: [NETS]</td>
+    </tr>
+  </table>
+
+
+</body>
+
+</html>

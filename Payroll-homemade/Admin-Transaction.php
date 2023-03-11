@@ -346,6 +346,28 @@ document.getElementById("NetSalaryDisplay").textContent = "Php " + netSalary.toF
     inputs[i].addEventListener('input', calculateNetSalary);
   }
 
+  const data = {
+  attendanceDeductions: Number(document.getElementsByName('AttD')[0].value),
+  governmentDeductions: Number(document.getElementsByName('GovD')[0].value),
+  employeeCashAdvances: Number(document.getElementsByName('EmpCa')[0].value),
+  incentives: Number(document.getElementsByName('Incent')[0].value),
+  midtermAnnualBonus: Number(document.getElementsByName('MidAnB')[0].value),
+  grossSalary: Number('<?php echo $TData['Basic_Rate'] ?>')
+};
+
+fetch('PDf-Payslip.php', {
+  method: 'POST',
+  body: JSON.stringify(data)
+})
+.then(response => {
+  // handle response from server
+})
+.catch(error => {
+  // handle error
+});
+
+
+
   // Call the function initially to calculate the net salary based on the initial input values
   calculateNetSalary();
 
