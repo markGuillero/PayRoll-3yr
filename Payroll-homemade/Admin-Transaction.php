@@ -186,17 +186,17 @@
     z-index: 9;
     border: 0;
     transition: box-shadow .2s;
-    color:black;
+    color: black;
   }
 
   .button-42:hover {
     box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
   }
 
-  .NetS{
+  .NetS {
     display: block;
-    margin-top:0%;
-    margin-right:4%;
+    margin-top: 0%;
+    margin-right: 4%;
 
   }
 </style>
@@ -279,12 +279,14 @@
           </ul>
 
           <form action="Admin-Crud.php" method="POST" onsubmit="calculateNetSalary()">
-  <input type="hidden" name="NetSalary" id="NetSalaryInput">
-  <input type="hidden" name="EmpIdT" value="<?php echo $TData['Employee_ID'] ?>">
-  
-  <h1 class="NetS">Net Salary: <span id="NetSalaryDisplay"></span></h1>
-  <input type="submit" class="button-42" role="button" name="NetSSub" value="Submit">
-</form>
+            <input type="hidden" name="NetSalary" id="NetSalaryInput">
+            <input type="hidden" name="EmpIdT" value="<?php echo $TData['Employee_ID'] ?>">
+
+            <h1 class="NetS">Net Salary: <span id="NetSalaryDisplay"></span></h1>
+            <h1 class="NetsS">Original Salary: <span id="NetSalaryDisplay"></span></h1>
+
+            <input type="submit" class="button-42" role="button" name="NetSSub" value="Submit">
+          </form>
         </div>
 
 
@@ -297,9 +299,7 @@
 </body>
 
 <script>
-
-
-var modal = document.getElementById("myModal");
+  var modal = document.getElementById("myModal");
   var span = document.getElementsByClassName("close")[0];
 
 
@@ -314,30 +314,32 @@ var modal = document.getElementById("myModal");
     }
   }
 
-
   function calculateNetSalary() {
     // Get the values of the inputs
-    const attendanceDeductions = Number(document.getElementsByName('AttD')[0].value);
-    const governmentDeductions = Number(document.getElementsByName('GovD')[0].value);
-    const employeeCashAdvances = Number(document.getElementsByName('EmpCa')[0].value);
-    const incentives = Number(document.getElementsByName('Incent')[0].value);
-    const midtermAnnualBonus = Number(document.getElementsByName('MidAnB')[0].value);
+    const attendanceDeductions = Number(document.getElementsByName('AttD')[0].value) || 0;
+    const governmentDeductions = Number(document.getElementsByName('GovD')[0].value) || 0;
+    const employeeCashAdvances = Number(document.getElementsByName('EmpCa')[0].value) || 0;
+    const incentives = Number(document.getElementsByName('Incent')[0].value) || 0;
+    const midtermAnnualBonus = Number(document.getElementsByName('MidAnB')[0].value) || 0;
     const grossSalary = Number('<?php echo $TData['Basic_Rate'] ?>');
+    const netSalary = Number('<?php echo $TData['Salary'] ?>');
 
     // Calculate the net salary
     const totalDeductions = attendanceDeductions + governmentDeductions + employeeCashAdvances;
     const adhocPay = incentives + midtermAnnualBonus;
-    const netSalary = grossSalary - totalDeductions + adhocPay;
+    const calculatedNetSalary = grossSalary - totalDeductions + adhocPay ;
 
     // Display the net salary on the page
     const netSalaryElement = document.querySelector('.NetS');
-    netSalaryElement.textContent = `Net Salary: ${netSalary}`;
+    netSalaryElement.textContent = `Net Salary: ${calculatedNetSalary}`;
 
-    document.getElementById("NetSalaryInput").value = netSalary.toFixed(2);
+    const netSalaryElements = document.querySelector('.NetsS');
+    netSalaryElements.textContent = `Orginal Salary: ${netSalary}`
 
-// Display the net salary to the user
-document.getElementById("NetSalaryDisplay").textContent = "Php " + netSalary.toFixed(2);
+    document.getElementById("NetSalaryInput").value = calculatedNetSalary.toFixed(2);
 
+    // Display the net salary to the user
+    document.getElementById("NetSalaryDisplay").textContent = "Php " + calculatedNetSalary.toFixed(2);
   }
 
   // Set up event listeners to call the function whenever any of the input values change
@@ -347,30 +349,29 @@ document.getElementById("NetSalaryDisplay").textContent = "Php " + netSalary.toF
   }
 
   const data = {
-  attendanceDeductions: Number(document.getElementsByName('AttD')[0].value),
-  governmentDeductions: Number(document.getElementsByName('GovD')[0].value),
-  employeeCashAdvances: Number(document.getElementsByName('EmpCa')[0].value),
-  incentives: Number(document.getElementsByName('Incent')[0].value),
-  midtermAnnualBonus: Number(document.getElementsByName('MidAnB')[0].value),
-  grossSalary: Number('<?php echo $TData['Basic_Rate'] ?>')
-};
+    attendanceDeductions: Number(document.getElementsByName('AttD')[0].value),
+    governmentDeductions: Number(document.getElementsByName('GovD')[0].value),
+    employeeCashAdvances: Number(document.getElementsByName('EmpCa')[0].value),
+    incentives: Number(document.getElementsByName('Incent')[0].value),
+    midtermAnnualBonus: Number(document.getElementsByName('MidAnB')[0].value),
+    grossSalary: Number('<?php echo $TData['Basic_Rate'] ?>')
+  };
 
-fetch('PDf-Payslip.php', {
-  method: 'POST',
-  body: JSON.stringify(data)
-})
-.then(response => {
-  // handle response from server
-})
-.catch(error => {
-  // handle error
-});
+  fetch('PDf-Payslip.php', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      // handle response from server
+    })
+    .catch(error => {
+      // handle error
+    });
 
 
 
   // Call the function initially to calculate the net salary based on the initial input values
   calculateNetSalary();
-
 </script>
 
 </body>

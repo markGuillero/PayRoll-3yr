@@ -243,14 +243,17 @@ if (isset($_POST['EmpEdit'])) {
   $Deduction = $_POST['EmpDec'];
   $BasicRate = $_POST['EmpBR'];
 
-  $queryUpdate = "Update payroll_db.employee_data set Employee_Name = '$EmployeeName', Hours_Work='$HoursWork',Deduction = '$Deduction', Basic_Rate = '$BasicRate', Overtime = '$Overtime'  WHERE Employee_ID ='$EmployeeID'";
+  $queryUpdate = "UPDATE payroll_db.employee_data SET Employee_Name = '$EmployeeName', Hours_Work='$HoursWork', Deduction = '$Deduction', Basic_Rate = '$BasicRate', Overtime = '$Overtime'  WHERE Employee_ID ='$EmployeeID'";
   mysqli_query($conn, $queryUpdate);
-?>
-  <script>
-    window.location.href = "Admin-Crud.php";
-  </script>
-<?php
+
+  // redirect back to the same page
+  header('Location: ' . $_SERVER['PHP_SELF']);
+  exit();
 }
+?>
+  
+<?php
+
 
 // <!-- Delete Employee -->
 if (isset($_POST['dELETE'])) {
