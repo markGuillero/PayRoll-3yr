@@ -89,12 +89,11 @@
   }
 
   .modal-header {
-    padding: 2px 10px;
+     padding: 2px 10px;
     background-color: #64bcf4;
     color: black;
     text-align: center;
     font-size: 20px;
-    padding-bottom: 3%;
   }
 
 
@@ -194,6 +193,7 @@
 
         <div class="container">
           <div class="table-selector">
+		  
 
             <table>
               <tr>
@@ -251,7 +251,8 @@
             }
                 ?>
                   </tr>
-
+	
+	
                   <table>
                     <tr>
                       <th>Present: <?php echo $PCounter ?></th>

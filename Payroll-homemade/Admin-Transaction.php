@@ -95,12 +95,11 @@
   }
 
   .modal-header {
-    padding: 2px 10px;
+     padding: 2px 10px;
     background-color: #64bcf4;
     color: black;
     text-align: center;
     font-size: 20px;
-    padding-bottom: 3%;
   }
 
 
