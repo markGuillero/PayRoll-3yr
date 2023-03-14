@@ -8,11 +8,15 @@
   <title>Document</title>
 </head>
 <style>
+  body{
+    margin:0;
+    padding:0;
+  }
   /* MODAL CONTENT TERM & CONDITION */
   .modal {
     display: block;
     /* Hidden by default */
-    position: fixed;
+    position: relative;
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
