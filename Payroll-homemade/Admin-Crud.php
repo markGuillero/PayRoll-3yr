@@ -281,10 +281,6 @@ if (isset($_POST['EmpEdit'])) {
 
   $queryUpdate = "UPDATE payroll_db.employee_data SET Employee_Name = '$EmployeeName', Hours_Work='$HoursWork', Deduction = '$Deduction', Basic_Rate = '$BasicRate', Overtime = '$Overtime'  WHERE Employee_ID ='$EmployeeID'";
   mysqli_query($conn, $queryUpdate);
-
-  // redirect back to the same page
-  header('Location: ' . $_SERVER['PHP_SELF']);
-  exit();
 }
 ?>
 
