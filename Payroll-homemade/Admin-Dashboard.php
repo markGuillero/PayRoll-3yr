@@ -116,14 +116,9 @@ if (isset($_POST['NetSSub'])) {
     <button>Employee Dashboard</button>
     <button>Employee Status</button>
     <button>Employee Time keeping</button>
-    <button id="LogBt">Log Out</button>
+    <button id="LogBt" onclick="window.location.href='welcomepage.php'">Log Out</button>
 
   </div>
-
-
-
-
-
 
   <div id="Page_Content">
     <div class="container">

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* CSS */
+    .button-54 {
+        font-family: "Open Sans", sans-serif;
+        font-size: 16px;
+        letter-spacing: 2px;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #000;
+        cursor: pointer;
+        border: 3px solid;
+        padding: 0.25em 0.5em;
+        position: relative;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    .button-54:active {
+        box-shadow: 0px 0px 0px 0px;
+        top: 5px;
+        left: 5px;
+    }
+
+    @media (min-width: 768px) {
+        .button-54 {
+            padding: 0.25em 0.75em;
+        }
+    }
+
+    #PerInfo {
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    #PerInfo input[type="text"] {
+        background: #D9D9D9;
+        border-radius: 20px;
+    }
+
+    #UserPass {
+        outline: 2px solid black;
+        border-radius: 20px;
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-top: 3%;
+        padding-bottom: 3%;
+
+    }
+
+    #UserPassContent {
+        width: 50%;
+        margin: auto;
+    }
+
+    #UserPassContent input[type="text"] {
+        width: 80%;
+        height: 25px;
+
+    }
+
+    #UserPassContent #Usernametxt {
+        width: 60%;
+        height: 25px;
+    }
+
+    #Name,
+    #ContText,
+    #Cont {
+        display: inline-flex;
+    }
+
+    #Cont {
+        margin-left: 42%;
+    }
+
+    #ContText {
+        margin-left: 5%;
+    }
+
+    #TxtLog {
+        text-align: center;
+    }
+    #DataEmp input[type="text"]{
+        width: 40%;
+        height: 25px;
+    }
+    form {
+        width: 55%;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+</style>
+
+<body>
+    <div id="PerInfo">
+        <form action="welcomepage.php" method="post">
+            <div id ="DataEmp">
+                <h5 id="Name">Name:</h5>
+                <h5 id="Cont">Contact Number:</h5>
+                <br>
+                <input type="text" name = "NameEmp">
+                <input type="text" id="ContText" name = "ContactNo"> 
+                <h5>Address:</h5>
+                <input type="text" name = "Add">
+                <h5>Email:</h5>
+                <input type="text" name = "Email">
+            </div>
+            <h3 id="TxtLog">LOGIN INFORMATION</h3>
+            <div id="UserPass">
+                <div id="UserPassContent">
+                    <h3>Username:</h3>
+                    <input id="Usernametxt" type="text" name = "UserNameVTxt">
+                    <h3>Password:</h3>
+                    <input type="text" name = "PassVTxt">
+                    <h3>Confirm Password:</h3>
+                    <input type="text">
+                    <br><br>
+                    <input type="submit" value="Sign Up" class="button-54" name="SignUpEmp">
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <button class="button-54" onclick="window.location.href='welcomepage.php'">BACK</button>
+
+</body>
+
+</html>
