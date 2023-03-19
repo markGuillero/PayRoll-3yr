@@ -305,12 +305,12 @@
 
   span.onclick = function() {
     modal.style.display = "none";
-    window.location.href = "Admin-Crud.php";
+    window.location.href = "Admin-Dashboard.php";
   }
 
   window.onclick = function(event) {
     if (event.target == modal) {
-      window.location.href = "Admin-Crud.php";
+      window.location.href = "Admin-Dashboard.php";
     }
   }
 </script>

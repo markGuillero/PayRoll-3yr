@@ -211,7 +211,7 @@
               $TextNRF = "";
               $conn = new mysqli($Servername, $username, $password) or die("Could Not Connect to Database");
               $id = $_GET['id'];
-              $query = "sELECT * FROM payroll_db.attendance_sheet_emp where Emp_Id = '$id'";
+              $query = "sELECT * FROM payroll_db.attendance_sheet_emp where Employee_ID = '$id'";
               $AttendanceData = mysqli_query($conn, $query);
 
               $time1 = "09:00:00";
@@ -226,7 +226,7 @@
               ?>
 
                   <tr>
-                    <td><?php echo $row['Emp_Id'] ?></td>
+                    <td><?php echo $row['Employee_ID'] ?></td>
                     <td><?php echo $row['Emp_Name'] ?></td>
                     <td><?php echo $row['Time In'] ?></td>
                     <td><?php echo $row['Time Out'] ?></td>
@@ -284,12 +284,12 @@
 
   span.onclick = function() {
     modal.style.display = "none";
-    window.location.href = "Admin-Crud.php";
+    window.location.href = "Admin-Dashboard.php";
   }
 
   window.onclick = function(event) {
     if (event.target == modal) {
-      window.location.href = "Admin-Crud.php";
+      window.location.href = "Admin-Dashboard.php";
     }
   }
 </script>

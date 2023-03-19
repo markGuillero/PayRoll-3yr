@@ -16,8 +16,7 @@
   font-size: 25px;
 }
 
-<!-- HTML !-->
-<button class="button-22" role="button">Button 22</button>
+/* <!-- HTML !--> */
 
 /* CSS */
 button {

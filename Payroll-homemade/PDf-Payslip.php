@@ -10,7 +10,7 @@ use Dompdf\Options;
 $id = $_GET['id'];
 
 $queryEmpD = "sELECT * FROM payroll_db.employee_data where Employee_ID = '$id';";
-$queryAtt = "sELECT * FROM payroll_db.attendance_sheet_emp where Emp_Id = '$id'";
+$queryAtt = "sELECT * FROM payroll_db.attendance_sheet_emp where Employee_ID = '$id';";
 $Emp_Att = filterTable($queryAtt);
 $Emp_result = filterTable($queryEmpD);
 
@@ -45,7 +45,7 @@ function filterTable($query)
 }
 
 while ($row = mysqli_fetch_array($Emp_result)) {
-   $Emp_name = $row['Employee_Name'];
+   $Emp_name = $row['Emp_Name'];
    $Emp_Hrw = $row['Hours_Work'];
    $Emp_decd = $row['Deduction'];
    $Emp_BSR = $row['Basic_Rate'];

@@ -140,7 +140,7 @@
           $updateData = mysqli_query($conn, $query);
           $rowdb = mysqli_fetch_array($updateData);
           if ($rowdb) {
-            echo "<form action='Admin-Crud.php' method='post'>";
+            echo "<form action='Admin-Dashboard.php' method='post'>";
             echo "Employee ID: "  . "<input type=text name = Empid disabled value='$rowdb[0]'> <br>";
             echo "Employee Name: " . "<input type=text name = EmpName disabled value='$rowdb[1]'> <br>";
             echo "Hours Work: " . "<input type=text name = EmpHRW disabled value='$rowdb[2]'> <br>";
@@ -173,12 +173,12 @@
 
   span.onclick = function() {
     modal.style.display = "none";
-    window.location.href = "Admin-Crud.php";
+    window.location.href = "Admin-Dashboard.php";
   }
 
   window.onclick = function(event) {
     if (event.target == modal) {
-      window.location.href = "Admin-Crud.php";
+      window.location.href = "Admin-Dashboard.php";
     }
   }
 </script>

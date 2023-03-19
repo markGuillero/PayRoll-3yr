@@ -256,9 +256,9 @@
             $updateData = mysqli_query($conn, $query);
             $rowdb = mysqli_fetch_array($updateData);
             if ($rowdb) {
-              echo "<form action='Admin-Crud.php' method='post'>";
+              echo "<form action='Admin-Dashboard.php' method='post'>";
               echo "Employee ID: "  . "<input type=text name = Empid disabled value= $rowdb[Employee_ID]> <br>";
-              echo "Employee Name: " . "<input type=text name = EmpName value=$rowdb[Employee_Name]> <br>";
+              echo "Employee Name: " . "<input type=text name = EmpName value=$rowdb[Emp_Name]> <br>";
               echo "Hours Work: " . "<input type=text name = EmpHRW value=$rowdb[Hours_Work]> <br>";
               echo "Overtime: " . "<input type=text name = EmpOver value=$rowdb[Overtime]> <br>";
               echo "Deduction: " . "<input type=text name = EmpDec value=$rowdb[Deduction]> <br>";
@@ -266,6 +266,9 @@
 
               echo "<input type=hidden name='EmpID' value='$id'><br>";
               echo "<p><input type='submit' name='EmpEdit' value='Update' class= 'updatebtn' /> </p></form>";
+              echo
+              "<a href=Admin-Delete.php?id=$rowdb[Employee_ID] class='button-19'> DELETE</a>";
+
           ?>
 
               <a href="Admin-Attendance.php?id=<?php echo $_GET['id'] ?>" name="add-emplo">
@@ -300,12 +303,12 @@
 
   span.onclick = function() {
     modal.style.display = "none";
-    window.location.href = "Admin-Crud.php";
+    window.location.href = "Admin-Dashboard.php";
   }
 
   window.onclick = function(event) {
     if (event.target == modal) {
-      window.location.href = "Admin-Crud.php";
+      window.location.href = "Admin-Dashboard.php";
     }
   }
 </script>

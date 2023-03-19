@@ -144,7 +144,7 @@
 				// Get the leaves taken by employees for the given month
 				$month = 3; // March
 				$year = 2023;
-				$sql = "SELECT Emp_Id, Emp_Name, COUNT(*) as Total_Leaves FROM payroll_db.attendance_sheet_emp WHERE MONTH(Date) = {$month} AND YEAR(Date) = {$year} AND `Time In` IS NULL AND `Time Out` IS NULL GROUP BY Emp_Id ORDER BY Emp_Id ASC";
+				$sql = "SELECT Employee_ID, Emp_Name, COUNT(*) as Total_Leaves FROM payroll_db.attendance_sheet_emp WHERE MONTH(Date) = {$month} AND YEAR(Date) = {$year} AND `Time In` IS NULL AND `Time Out` IS NULL GROUP BY Employee_ID ORDER BY Employee_ID ASC";
 				$result = $conn->query($sql);
 
 				if ($result->num_rows > 0) {
@@ -155,7 +155,7 @@
 					// Output the leaves taken by employees for the given month
 					while ($row = $result->fetch_assoc()) {
 						echo "<tr>";
-						echo "<td>" . $row['Emp_Id'] . "</td>";
+						echo "<td>" . $row['Employee_ID'] . "</td>";
 						echo "<td>" . $row['Emp_Name'] . "</td>";
 						echo "<td>" . $row['Total_Leaves'] . "</td>";
 						echo "</tr>";
@@ -187,12 +187,12 @@
 
   span.onclick = function() {
     modal.style.display = "none";
-    window.location.href = "Admin-Crud.php";
+    window.location.href = "Admin-Dashboard.php";
   }
 
   window.onclick = function(event) {
     if (event.target == modal) {
-      window.location.href = "Admin-Crud.php";
+      window.location.href = "Admin-Dashboard.php";
     }
   }
 </script>

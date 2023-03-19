@@ -212,7 +212,7 @@
   $TrasactionData = mysqli_query($conn, $query);
   $TData = mysqli_fetch_array($TrasactionData);
 
-  $queryAtt = "sELECT * FROM payroll_db.attendance_sheet_emp Where Emp_Id = '$id'";
+  $queryAtt = "sELECT * FROM payroll_db.attendance_sheet_emp Where Employee_ID = '$id'";
   $AttendanceData = mysqli_query($conn, $queryAtt);
 
   $LateCounter = 0;
@@ -251,7 +251,7 @@
       <div class="modal-body">
 
         <div class="Salary">
-          <h3>Employee Name: <?php echo $TData['Employee_Name'] ?> </h3>
+          <h3>Employee Name: <?php echo $TData['Emp_Name'] ?> </h3>
           <h4>Gross Salary:</h4>
           <ul>
             <li>Hours Work: <?php echo $TData['Hours_Work'] ?></li>
@@ -277,7 +277,7 @@
             <li>Midterm Year/ Annual Bonus: <input type=text name=MidAnB value=0> </li>
           </ul>
 
-          <form action="Admin-Crud.php" method="POST" onsubmit="calculateNetSalary()">
+          <form action="Admin-Dashboard.php" method="POST" onsubmit="calculateNetSalary()">
             <input type="hidden" name="NetSalary" id="NetSalaryInput">
             <input type="hidden" name="EmpIdT" value="<?php echo $TData['Employee_ID'] ?>">
 
@@ -304,12 +304,12 @@
 
   span.onclick = function() {
     modal.style.display = "none";
-    window.location.href = "Admin-Crud.php";
+    window.location.href = "Admin-Dashboard.php";
   }
 
   window.onclick = function(event) {
     if (event.target == modal) {
-      window.location.href = "Admin-Crud.php";
+      window.location.href = "Admin-Dashboard.php";
     }
   }
 
