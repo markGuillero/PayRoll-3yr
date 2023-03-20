@@ -7,29 +7,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login Page</title>
   <link rel="stylesheet" href="Admin_ALL.css">
-<style>
+  <style>
     #UserNsign,
     #PassNsign {
-    display: inline-block;
-    margin: 9%;
-    border-radius: 20px;
-    width: 403px;
-    height: 13px;
-    size: 15px;
-    background-color: white;
-  }
-  #UserNsign{
-    outline: 2px solid black;
-  }
-  #PassNsign {
-    margin-top: 1%;
-    border-radius: 20px;
-    width: 403px;
-    height: 23px;
-    size: 15px;
-  }
+      display: inline-block;
+      margin: 9%;
+      border-radius: 20px;
+      width: 403px;
+      height: 13px;
+      size: 15px;
+      background-color: white;
+    }
 
-</style>
+    #UserNsign {
+      outline: 2px solid black;
+    }
+
+    #PassNsign {
+      margin-top: 1%;
+      border-radius: 20px;
+      width: 403px;
+      height: 23px;
+      size: 15px;
+    }
+  </style>
   <?php
   include("Connection.php");
   if (isset($_POST['SignUpEmp'])) {
@@ -62,31 +63,33 @@
         <br>
       </div>
       <form action="#" method="post">
-      <div id="sign&pass">
-        <input type="text" placeholder="Username" id = "UserNsign" name = "SignInTxtUsername" required>
-        <input type="password" placeholder="Password" id = "PassNsign" name = "PassTxtUsername" required>
-      </div>
-      <input type ="submit" name = "LogginIn">
-      <button onclick = "window.location.href='SignUp.html'">Sign Up</button>
-
+        <div id="sign&pass">
+          <input type="text" placeholder="Username" id="UserNsign" name="SignInTxtUsername" required>
+          <input type="password" placeholder="Password" id="PassNsign" name="PassTxtUsername" required>
+        </div>
+        <input type="submit" name="LogginIn">
+        <input type=reset onclick="window.location.href='SignUp.html'" value="Sign Up">
       </form>
     </div>
   </div>
-<?php
-if(isset($_POST["LogginIn"])){
- $UserN = $_POST["SignInTxtUsername"];
- $Pass = $_POST["PassTxtUsername"];
+  <?php
+  if (isset($_POST["LogginIn"])) {
+    $UserN = $_POST["SignInTxtUsername"];
+    $Pass = $_POST["PassTxtUsername"];
 
-  $sql1 = "Select * From payroll_db.emp_privdata where Username = '$UserN' and Password = '$Pass'";
-  $rowCheckExist = mysqli_num_rows(filterTable($sql1));
-  echo $rowCheckExist;
+    $sql1 = "Select * From payroll_db.emp_privdata where Username = '$UserN' and Password = '$Pass'";
+    $rowCheckExist = mysqli_num_rows(filterTable($sql1));
 
-  if($rowCheckExist > 0){
-  header("Location: Admin-Dashboard.php");
+    if ($rowCheckExist > 0) {
+      header("Location: Employee-TimeKeeping.php?user=$UserN");
+    }
+
+    if ($UserN = "admin" && $Pass = "admin" && $rowCheckExist <= 0) {
+      header("Location: Admin-Dashboard.php");
+    }
   }
-}
-
-?>
+  mysqli_close($conn);
+  ?>
 
 
 

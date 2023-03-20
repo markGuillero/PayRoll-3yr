@@ -150,12 +150,8 @@
       </div>
       <div class="modal-body">
         <?php
-        $Servername = "localhost";
-        $username = "root";
-        $password = "";
-        $conn = new mysqli($Servername, $username, $password) or die("Could Not Connect to Database");
 
-        echo "<form action='Admin-Crud.php' method='post'>";
+        echo "<form action='Admin-Dashboard.php' method='post'>";
         echo "Employee ID: " . "<input type=hidden name = AEmpId> <br>";
         echo "Employee Name:" . "<input type=text name = AEmpName> <br>";
         echo "Hours Work: " . "<input type=text name = AEmpHRW> <br>";
@@ -181,12 +177,12 @@
 
   span.onclick = function() {
     modal.style.display = "none";
-    window.location.href = "Admin-Crud.php";
+    window.location.href = "Admin-Dashboard.php";
   }
 
   window.onclick = function(event) {
     if (event.target == modal) {
-      window.location.href = "Admin-Crud.php";
+      window.location.href = "Admin-Dashboard.php";
     }
   }
 </script>
