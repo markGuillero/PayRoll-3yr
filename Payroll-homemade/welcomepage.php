@@ -28,7 +28,50 @@
     height: 23px;
     size: 15px;
   }
+ 
+/* CSS */
+.button-27 {
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: auto;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+}
 
+.button-27:disabled {
+  pointer-events: none;
+}
+
+.button-27:hover {
+  background-color: white;
+  color:black;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-27:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
 </style>
   <?php
   include("Connection.php");
@@ -56,6 +99,7 @@
 <body>
   <div id="card-whole">
     <div id="head">
+    <center>
       <img src="https://cdn.pixabay.com/photo/2016/09/05/18/54/texture-1647380_960_720.jpg" alt="logo" id="logoC">
       <div id="name">
         <h1>Company Name: PlaceHolder</h1>
@@ -66,9 +110,10 @@
         <input type="text" placeholder="Username" id = "UserNsign" name = "SignInTxtUsername" required>
         <input type="password" placeholder="Password" id = "PassNsign" name = "PassTxtUsername" required>
       </div>
-      <input type ="submit" name = "LogginIn">
-      <button onclick = "window.location.href='SignUp.html'">Sign Up</button>
-
+      
+      <input type ="submit" name = "LogginIn" class = "button-27">
+      <input type ="reset" onclick = "window.location.href='SignUp.html'" value = "Sign Up" class = "button-27">
+      </center>
       </form>
     </div>
   </div>
@@ -81,9 +126,13 @@ if(isset($_POST["LogginIn"])){
   $rowCheckExist = mysqli_num_rows(filterTable($sql1));
   echo $rowCheckExist;
 
-  if($rowCheckExist > 0){
-  header("Location: Admin-Dashboard.php");
+  if($rowCheckExist >= 1){
+  header("Location: Employee-TimeKeeping.php?id=$UserN");
   }
+
+  if($UserN == "admin" and $Pass == "admin"){
+    header("Location: Admin-Dashboard.php");
+    }
 }
 
 ?>

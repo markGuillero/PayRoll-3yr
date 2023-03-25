@@ -101,21 +101,33 @@ a:hover {
   color: #333;
 }
 </style>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password);
+ $UserN = $_GET['id'];
+ $sql1 = "Select * From payroll_db.emp_privdata where Username = '$UserN'";
+ $result = mysqli_query($conn,$sql1);
+ $placeholder;
+while($row = mysqli_fetch_array($result)){
+  $placeholder = $row['Emp_Id'];
+?>
+
+
 
 <body>
 <div class="container">
-
-	
-
-	
 		<div class="navbar">
 			<div class="user-info">
-			  <h3>User Name</h3>
-			  <h4>User Id</h4>
+			  <h3>User Name <?php echo $UserN ?></h3>
+			  <h4>User Id <?php echo $row['Emp_Id'] ?> </h4>
 			<br><br><br><br><br><br><br><br><br><br><br><br>
 			</div>
 		  <a href="#">Employee Dashboard</a>
-		  <a href="#">Logout</a>
+		  <a href="welcomepage.php">Logout</a>
 		</div>
 
 
@@ -131,6 +143,7 @@ a:hover {
 	</div>	
 	
 </div>	
+<?php } ?>
 <script>
 	const timeInBtn = document.getElementById("time-in-btn");
 	const timeOutBtn = document.getElementById("time-out-btn");

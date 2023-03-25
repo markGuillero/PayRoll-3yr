@@ -233,7 +233,7 @@
               } else {
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo "<tr>";
-						echo "<td>" . $row['Emp_Id'] . "</td>";
+						echo "<td>" . $row['Employee_ID'] . "</td>";
 						echo "<td>" . $row['Emp_Name'] . "</td>";
 						echo "<td>" . $row['Time In'] . "</td>";
 						echo "<td>" . $row['Time Out'] . "</td>";
@@ -265,19 +265,19 @@
 
             <?php
 				// Attendance report for the 16th to the end of the month
-				$sql = "SELECT * FROM payroll_db.attendance_sheet_emp WHERE DATE_FORMAT(Date, '%d') BETWEEN 16 AND LAST_DAY(Date)";
-				$result = mysqli_query($conn, $sql);
+        $sql2 = "SELECT * FROM payroll_db.attendance_sheet_emp WHERE DATE_FORMAT(Date, '%d') >= 16 AND DATE_FORMAT(Date, '%d') <= LAST_DAY(Date)";
+				$result1 = mysqli_query($conn, $sql2);
 
 			
 
 				// Output the attendance records for the 16th to the end of the month
-				while ($row = mysqli_fetch_assoc($result)) {
+				while ($row2 = mysqli_fetch_assoc($result1)) {
 					echo "<tr>";
-					echo "<td>" . $row['Emp_Id'] . "</td>";
-					echo "<td>" . $row['Emp_Name'] . "</td>";
-					echo "<td>" . $row['Time In'] . "</td>";
-					echo "<td>" . $row['Time Out'] . "</td>";
-					echo "<td>" . $row['Date'] . "</td>";
+					echo "<td>" . $row2['Employee_ID'] . "</td>";
+					echo "<td>" . $row2['Emp_Name'] . "</td>";
+					echo "<td>" . $row2['Time In'] . "</td>";
+					echo "<td>" . $row2['Time Out'] . "</td>";
+					echo "<td>" . $row2['Date'] . "</td>";
 					echo "</tr>";
 				}
 
