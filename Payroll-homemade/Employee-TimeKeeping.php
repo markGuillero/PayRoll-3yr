@@ -9,170 +9,145 @@
 </head>
 
 <style>
-  .right-column input[type="text"] {
-    width: 150px;
-    padding: 10px;
-    margin-right: 10px;
-    font-size: 25px;
-  }
-
-  /* <!-- HTML !--> */
-
-  /* CSS */
-  button {
-    align-items: center;
-    appearance: button;
-    background-color: #0276FF;
-    border-radius: 8px;
-    border-style: none;
-    box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    flex-shrink: 0;
-    font-family: "RM Neue", sans-serif;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
-    padding: 10px 21px;
-    text-align: center;
-    text-transform: none;
-    transition: color .13s ease-in-out, background .13s ease-in-out, opacity .13s ease-in-out, box-shadow .13s ease-in-out;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-  }
-
-  button :active {
-    background-color: #006AE8;
-  }
-
-  button :hover {
-    background-color: #1C84FF;
-  }
-
-
-
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 1000px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  }
-
-  .right-column {
-    background-color: #ccc;
-    padding: 20px;
-    flex-basis: 50%;
-  }
-
-  .navbar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 200px;
-    background-color: #64bcf4;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-
-  a {
-    display: block;
-    margin: 10px 0;
-    font-size: 18px;
-    text-decoration: none;
-    color: #fff;
-    text-align: center;
-  }
-
-  a:hover {
-    background-color: #fff;
-    color: #333;
-  }
-</style>
-
-<?php 
-include("Connection.php");
-$EmpUsername = $_GET["user"];
-$Servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "payroll_db";
-$conn = new mysqli($Servername, $username, $password, $dbname) or die("Could Not Connect to Database");
-
-// Escape user input to prevent SQL injection
-$EmpUsername = mysqli_real_escape_string($conn, $EmpUsername);
-
-$sql = "SELECT * FROM emp_privdata WHERE Name = '$EmpUsername'";
-$result = mysqli_query($conn, $sql);
-
-if(mysqli_num_rows($result) > 0) {
-  while($row = mysqli_fetch_array($result)) {
-    // process each row of data here
-    $Emp_Id = $row['Emp_Id'];
-  }
-} else {
-  echo "No data found for user: $EmpUsername";
+.right-column input[type="text"] {
+  width: 150px;
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 25px;
 }
 
-mysqli_close($conn);
-?>
+/* <!-- HTML !--> */
 
-  <body>
-    <div class="container">
-      <div class="navbar">
-        <div class="user-info">
-          <h3>User Name: <?php echo $EmpUsername; ?></h3>
-          <h4>User Id: <?php  echo $Emp_Id; ?> </h4>
-          <br><br><br><br><br><br><br><br><br><br><br><br>
-        </div>
-        <a href="welcomepage.php">Logout</a>
-      </div>
+/* CSS */
+button {
+  align-items: center;
+  appearance: button;
+  background-color: #0276FF;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: "RM Neue",sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  padding: 10px 21px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button :active {
+  background-color: #006AE8;
+}
+
+button :hover {
+  background-color: #1C84FF;
+}
 
 
-      <div class="right-column">
-        <label for="time-in">Time In:</label>&nbsp &nbsp
-        <input type="text" id="time-in" disabled>
-        <button id="time-in-btn">Clock In</button>
-        <br><br><br>
 
-        <label for="time-out">Time Out:</label>
-        <input type="text" id="time-out" disabled>
-        <button id="time-out-btn">Clock Out</button><br>
-      </div>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1000px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
 
-    </div>
+.right-column {
+  background-color: #ccc;
+  padding: 20px;
+  flex-basis: 50%;
+}
 
-  <?php 
-  ?>
-  <script>
-    const timeInBtn = document.getElementById("time-in-btn");
-    const timeOutBtn = document.getElementById("time-out-btn");
-    const timeInTextbox = document.getElementById("time-in");
-    const timeOutTextbox = document.getElementById("time-out");
+.navbar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 200px;
+  background-color: #64bcf4;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
-    timeInBtn.addEventListener("click", function() {
-      let currentTime = new Date().toLocaleTimeString();
-      timeInTextbox.value = currentTime;
-    });
+a {
+  display: block;
+  margin: 10px 0;
+  font-size: 18px;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+}
 
-    timeOutBtn.addEventListener("click", function() {
-      let currentTime = new Date().toLocaleTimeString();
-      timeOutTextbox.value = currentTime;
-    });
-  </script>
+a:hover {
+  background-color: #fff;
+  color: #333;
+}
+</style>
 
-  </body>
+<body>
+<div class="container">
 
+	
+
+	
+		<div class="navbar">
+			<div class="user-info">
+			  <h3>User Name</h3>
+			  <h4>User Id</h4>
+			<br><br><br><br><br><br><br><br><br><br><br><br>
+			</div>
+		  <a href="#">Employee Dashboard</a>
+		  <a href="#">Logout</a>
+		</div>
+
+
+	<div class="right-column">
+		<label for="time-in">Time In:</label>&nbsp &nbsp
+		<input type="text" id="time-in" disabled>
+		<button id="time-in-btn">Clock In</button>	
+		<br><br><br>
+		
+		<label for="time-out">Time Out:</label>
+		<input type="text" id="time-out" disabled>
+		<button id="time-out-btn">Clock Out</button><br>
+	</div>	
+	
+</div>	
+<script>
+	const timeInBtn = document.getElementById("time-in-btn");
+	const timeOutBtn = document.getElementById("time-out-btn");
+	const timeInTextbox = document.getElementById("time-in");
+	const timeOutTextbox = document.getElementById("time-out");
+
+	timeInBtn.addEventListener("click", function() {
+	  let currentTime = new Date().toLocaleTimeString();
+	  timeInTextbox.value = currentTime;
+	});
+
+	timeOutBtn.addEventListener("click", function() {
+	  let currentTime = new Date().toLocaleTimeString();
+	  timeOutTextbox.value = currentTime;
+	});
+</script>	
+	
+</body>
 </html>
+

@@ -8,11 +8,10 @@
   <title>Document</title>
 </head>
 <style>
-  body {
-    margin: 0;
-    padding: 0;
+  body{
+    margin:0;
+    padding:0;
   }
-
   /* MODAL CONTENT TERM & CONDITION */
   .modal {
     display: block;
@@ -198,12 +197,12 @@
 
         <div class="container">
           <div class="table-selector">
-
-
+		  
+	
 
             <table>
-              <h2>Attendance Report for the 1st to the 15th of the Month</h2>
-              <tr>
+			<h2>Attendance Report for the 1st to the 15th of the Month</h2>
+                <tr>
                 <th>Emp_Id</th>
                 <th>Emp_Name</th>
                 <th>Time In</th>
@@ -211,79 +210,83 @@
                 <th>Date</th>
               </tr>
 
-              <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "payroll_db";
-    $TextNRF = "";
-    
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $password, $database);
+                <?php
+			$Servername = "localhost";
+			$username = "root";
+			$password = "";
+			$TextNRF = "";
+			$conn = new mysqli($Servername, $username, $password) or die("Could Not Connect to Database");
 
-    // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+			// Check connection
+			if (!$conn) {
+				die("Connection failed: " . mysqli_connect_error());
+			}
 
-    // Attendance report for the 1st to the 15th of the month
-    $sql = "SELECT * FROM attendance_sheet_emp WHERE DATE_FORMAT(Date, '%d') BETWEEN 1 AND 15";
-    $result = mysqli_query($conn, $sql);
+			// Attendance report for the 1st to the 15th of the month
+			$sql = "SELECT * FROM payroll_db.attendance_sheet_emp WHERE DATE_FORMAT(Date, '%d') BETWEEN 1 AND 15";
+			$result = mysqli_query($conn, $sql);
 
-    // Output the attendance records for the 1st to the 15th of the month
-    echo "<table>";
-    echo "<tr>";
-    echo "<th>Emp_Id</th>";
-    echo "<th>Emp_Name</th>";
-    echo "<th>Time In</th>";
-    echo "<th>Time Out</th>";
-    echo "<th>Date</th>";
-    echo "</tr>";
-    if (mysqli_num_rows($result) == 0) {
-        $TextNRF = "Attendance Not Found";
-    } else {
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>" . $row['Employee_ID'] . "</td>";
-            echo "<td>" . $row['Emp_Name'] . "</td>";
-            echo "<td>" . $row['Time In'] . "</td>";
-            echo "<td>" . $row['Time Out'] . "</td>";
-            echo "<td>" . $row['Date'] . "</td>";
-            echo "</tr>";
-        }
-    }
-    echo "</table>";
+			
+			// Output the attendance records for the 1st to the 15th of the month
+			  if (mysqli_num_rows($result) == 0) {
+                $TextNRF = "Attendance Not Found";
+              } else {
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo "<tr>";
+						echo "<td>" . $row['Emp_Id'] . "</td>";
+						echo "<td>" . $row['Emp_Name'] . "</td>";
+						echo "<td>" . $row['Time In'] . "</td>";
+						echo "<td>" . $row['Time Out'] . "</td>";
+						echo "<td>" . $row['Date'] . "</td>";
+						echo "</tr>";
+				}
+			}
+			echo "</table>";
 
-    // Attendance report for the 16th to the end of the month
-    $sql = "SELECT * FROM attendance_sheet_emp WHERE DATE_FORMAT(Date, '%d') BETWEEN 16 AND LAST_DAY(Date)";
-    $result = mysqli_query($conn, $sql);
+			
+		?>
 
-    // Output the attendance records for the 16th to the end of the month
-    echo "<h2>Attendance Report for the 16th to the End of the Month</h2>";
-    echo "<table>";
-    echo "<tr>";
-    echo "<th>Emp_Id</th>";
-    echo "<th>Emp_Name</th>";
-    echo "<th>Time In</th>";
-    echo "<th>Time Out</th>";
-    echo "<th>Date</th>";
-    echo "</tr>";
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
-        echo "<td>" . $row['Employee_ID'] . "</td>";
-        echo "<td>" . $row['Emp_Name'] . "</td>";
-        echo "<td>" . $row['Time In'] . "</td>";
-        echo "<td>" . $row['Time Out'] . "</td>";
-        echo "<td>" . $row['Date'] . "</td>";
-        echo "</tr>";
-    }
 
-    echo "</table>";
+                  </tr>
+	
+	
+                  <table>
+				  <h2>Attendance Report for the 16th to the End of the Month</h2>
+                      <tr>
+						<th>Emp_Id</th>
+						<th>Emp_Name</th>
+						<th>Time In</th>
+						<th>Time Out</th>
+						<th>Date</th>
+					  </tr>
+                
 
-    // Close the database connection
-    mysqli_close($conn);
-    echo $TextNRF;
-?>
+  
+
+            <?php
+				// Attendance report for the 16th to the end of the month
+				$sql = "SELECT * FROM payroll_db.attendance_sheet_emp WHERE DATE_FORMAT(Date, '%d') BETWEEN 16 AND LAST_DAY(Date)";
+				$result = mysqli_query($conn, $sql);
+
+			
+
+				// Output the attendance records for the 16th to the end of the month
+				while ($row = mysqli_fetch_assoc($result)) {
+					echo "<tr>";
+					echo "<td>" . $row['Emp_Id'] . "</td>";
+					echo "<td>" . $row['Emp_Name'] . "</td>";
+					echo "<td>" . $row['Time In'] . "</td>";
+					echo "<td>" . $row['Time Out'] . "</td>";
+					echo "<td>" . $row['Date'] . "</td>";
+					echo "</tr>";
+				}
+
+				echo "</table>";
+
+				// Close the database connection
+				mysqli_close($conn);
+			  echo $TextNRF;
+            ?>
 
           </div>
         </div>

@@ -180,7 +180,6 @@ if (isset($_POST['NetSSub'])) {
               echo "<a href='Admin-Dashboard.php?page=$i'>$i</a>";
             }
           }
-          mysqli_close($conn);
           ?>
         </div>
         <a href="Admin-Month(15&30).php" class="add" name="add-emplo">Monthly Attendance</a>
