@@ -128,7 +128,7 @@
                     <h3>Password:</h3>
                     <input type="text" name = "PassVTxt">
                     <h3>Confirm Password:</h3>
-                    <input type="text">
+                    <input type="text" name="ConfirmPassVTxt">
                     <br><br>
                     <input type="submit" value="Sign Up" class="button-54" name="SignUpEmp">
                 </div>
@@ -139,5 +139,19 @@
     <button class="button-54" onclick="window.location.href='welcomepage.php'">BACK</button>
 
 </body>
-
+<script>
+    // Select the password and confirm password fields
+    const passwordField = document.getElementsByName('PassVTxt')[0];
+    const confirmPasswordField = document.getElementsByName('ConfirmPassVTxt')[0];
+    
+    // Add an event listener to the form submit button
+    document.querySelector('input[type="submit"]').addEventListener('click', function(event) {
+      // Check if the passwords match
+      if (passwordField.value !== confirmPasswordField.value) {
+        // If the passwords don't match, prevent the form from submitting
+        event.preventDefault();
+        alert("Password and Confirm Password fields must match.");
+      }
+    });
+    </script>
 </html>
