@@ -9,6 +9,93 @@
 </head>
 
 <style>
+/* CSS */
+.button-5 {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #fa6400;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: 100%;
+  bottom:-20%;
+}
+
+.button-5:hover,
+.button-5:focus {
+  background-color: #fb8332;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+  transform: translateY(-1px);
+}
+
+.button-5:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+/* CSS */
+.button-7 {
+  background-color: #0095ff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+  width:100%;
+  padding:15px;
+}
+
+.button-7:hover,
+.button-7:focus {
+  background-color: lightblue;
+}
+
+.button-7:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button-7:active {
+  background-color: #0064bd;
+  box-shadow: none;
+}
 .right-column input[type="text"] {
   width: 150px;
   padding: 10px;
@@ -53,13 +140,11 @@ button :hover {
   background-color: #1C84FF;
 }
 
-
-
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1000px;
+  height:98vh;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -114,20 +199,19 @@ $conn = mysqli_connect($servername, $username, $password);
  $placeholder;
 while($row = mysqli_fetch_array($result)){
   $placeholder = $row['Emp_Id'];
+}
 ?>
-
-
 
 <body>
 <div class="container">
 		<div class="navbar">
 			<div class="user-info">
 			  <h3>User Name <?php echo $UserN ?></h3>
-			  <h4>User Id <?php echo $row['Emp_Id'] ?> </h4>
+			  <h4>User Id <?php echo $placeholder ?> </h4>
 			<br><br><br><br><br><br><br><br><br><br><br><br>
 			</div>
-		  <a href="#">Employee Dashboard</a>
-		  <a href="welcomepage.php">Logout</a>
+		  <a href="#" class = "button-7">Employee Dashboard</a>
+		  <a href="welcomepage.php" class = "button-5">Logout</a>
 		</div>
 
 
@@ -143,7 +227,7 @@ while($row = mysqli_fetch_array($result)){
 	</div>	
 	
 </div>	
-<?php } ?>
+
 <script>
 	const timeInBtn = document.getElementById("time-in-btn");
 	const timeOutBtn = document.getElementById("time-out-btn");
