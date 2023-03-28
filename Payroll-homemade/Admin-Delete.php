@@ -154,7 +154,8 @@
 
           } else
             echo "No record found...";
-        }  ?>
+        }  $conn->close();
+        ?>
 
 
 

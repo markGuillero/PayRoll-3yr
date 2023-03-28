@@ -286,6 +286,8 @@
 				// Close the database connection
 				mysqli_close($conn);
 			  echo $TextNRF;
+        $conn->close();
+
             ?>
 
           </div>

@@ -200,6 +200,8 @@ $conn = mysqli_connect($servername, $username, $password);
 while($row = mysqli_fetch_array($result)){
   $placeholder = $row['Emp_Id'];
 }
+$conn->close();
+
 ?>
 
 <body>

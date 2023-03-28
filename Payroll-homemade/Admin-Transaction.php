@@ -264,7 +264,13 @@
           <h4>Deductions: </h4>
           <ul>
             <li>Attendance Deductions: <input type=text name=AttD value="<?php echo $LateDecPrice * $LateCounter ?>"></li>
-            <li>Government Deductions: <input type=text name=GovD value=0></li>
+            <li>Government Deductions: 
+              <select name = "gov_deduc" id = "Gov_decID">
+                <option value = "550">SSS(550)</option>
+                <option value = "1500">Philhealth(1500)</option>
+                <option value = "1600">Tax(1600)</option>
+              </select>
+          </li>
             <li>Employee Cash advances:<input type=text name=EmpCa value=0> </li>
           </ul>
 
@@ -316,7 +322,7 @@
   function calculateNetSalary() {
     // Get the values of the inputs
     const attendanceDeductions = Number(document.getElementsByName('AttD')[0].value) || 0;
-    const governmentDeductions = Number(document.getElementsByName('GovD')[0].value) || 0;
+    const governmentDeductions = Number(document.getElementsByName('gov_deduc')[0].value) || 0;
     const employeeCashAdvances = Number(document.getElementsByName('EmpCa')[0].value) || 0;
     const incentives = Number(document.getElementsByName('Incent')[0].value) || 0;
     const midtermAnnualBonus = Number(document.getElementsByName('MidAnB')[0].value) || 0;
@@ -347,9 +353,12 @@
     inputs[i].addEventListener('input', calculateNetSalary);
   }
 
+  const govDedSelect = document.getElementById('Gov_decID');
+govDedSelect.addEventListener('change', calculateNetSalary);
+
   const data = {
     attendanceDeductions: Number(document.getElementsByName('AttD')[0].value),
-    governmentDeductions: Number(document.getElementsByName('GovD')[0].value),
+    governmentDeductions: Number(document.getElementsByName('gov_deduc')[0].value),
     employeeCashAdvances: Number(document.getElementsByName('EmpCa')[0].value),
     incentives: Number(document.getElementsByName('Incent')[0].value),
     midtermAnnualBonus: Number(document.getElementsByName('MidAnB')[0].value),
@@ -367,10 +376,7 @@
       // handle error
     });
 
-
-
-  // Call the function initially to calculate the net salary based on the initial input values
-  calculateNetSalary();
+    calculateNetSalary();
 </script>
 
 </body>

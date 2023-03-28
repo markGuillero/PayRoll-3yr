@@ -126,6 +126,8 @@ if (isset($_POST['searchSubmit'])) {
               echo "<a href='Admin-Dashboard.php?page=$i'>$i</a>";
             }
           }
+          $conn->close();
+
           ?>
         </div>
         <a href="Admin-Month(15&30).php" class="add" name="add-emplo">Monthly Attendance</a>

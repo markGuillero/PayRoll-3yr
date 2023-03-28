@@ -112,3 +112,4 @@ $dompdf->addInfo("Employee PaySlip", "PaySlip"); // "add_info" in earlier versio
  */
 $dompdf->stream("PaySlip.pdf", ["Attachment" => 0]);
 
+$conn->close();

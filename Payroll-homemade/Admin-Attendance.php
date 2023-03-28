@@ -263,6 +263,8 @@
 
             <?php
             echo $TextNRF;
+            $conn->close();
+
             ?>
 
           </div>

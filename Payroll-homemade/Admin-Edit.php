@@ -282,7 +282,9 @@
           <?php
             } else
               echo "No record found...";
-          }  ?>
+          }  
+          $conn->close();
+          ?>
 
 
         </div>

@@ -164,7 +164,9 @@
         echo "Basic Rate: " . "<input type=text name= AEmpBSR> <br>";
         echo "<input type='submit' name='Add_Employee' value='+ADD' class= 'btn'>";
         echo "<input type=submit name='cancel' value='CANCEL' class= 'btn'> </form>";
-        ?>
+        $conn->close();
+
+       ?>
 
       </div>
       <div class="modal-footer">

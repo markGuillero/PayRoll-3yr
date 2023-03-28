@@ -18,8 +18,9 @@ function filterTable($query)
   $username = "root";
   $password = "";
 
-  $conn = mysqli_connect($servername, $username, $password);
+  $conn =  mysqli_connect($servername, $username, $password);
   $filter_Result = mysqli_query($conn, $query);
+  $conn->close();
   return $filter_Result;
 }
 ?>
