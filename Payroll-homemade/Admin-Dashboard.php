@@ -359,6 +359,13 @@
       bottom: 50px;
       width: 20%;
     }
+    .ActivePage{
+      background-color: #64F4B9;
+     color:#F49C64;
+    }
+    .ActivePage::after{
+      background-color: #D3FAD6;
+    }
   </style>
 </header>
 
@@ -461,9 +468,10 @@ if (isset($_POST['NetSSub'])) {
     <img src="https://cdn.pixabay.com/photo/2016/09/05/18/54/texture-1647380_960_720.jpg" alt="logo" id="logoC">
     <h6>Role:</h6>
     <h6>Name:</h6>
-    <button class="button-19">Employee Dashboard</button>
+    <button class="button-19 ActivePage">Employee Dashboard</button>
     <button class="button-19">Employee Status</button>
     <button class="button-19">Employee Time keeping</button>
+    <button class="button-19" id = "EmpDashAnalytics" >Employee Analytics</button>
     <button class="button-19 ClsLogOut" onclick="window.location.href='welcomepage.php'">Log Out</button>
 
   </div>
@@ -537,6 +545,14 @@ if (isset($_POST['NetSSub'])) {
 
       </div>
     </div>
+
+    <script>
+      var EmpDash = document.getElementById("EmpDashAnalytics").addEventListener("click",EmpDashPage);
+
+      function EmpDashPage(){
+        window.location.href='Admin-Dashboard_Analytics.php';
+      }
+      </script>
 </body>
 
 </html>

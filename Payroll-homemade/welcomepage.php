@@ -399,23 +399,24 @@
                   $mail->Host       = 'smtp.gmail.com';
                   $mail->SMTPAuth   = true;
                   $mail->Username   = 'crossmode75@gmail.com';
-                  $mail->Password   = 'dxxdvbvfetkfmyuy';
+                  $mail->Password   = 'cqinjghfkrlunbcl';
                   $mail->SMTPSecure = 'ssl';
                   $mail->Port       = 465;
-
+              
                   //Recipients
                   $mail->setFrom('crossmode75@gmail.com', 'Sent From Php');
                   $mail->addAddress($FEmail, "test");
-
+              
                   $mail->isHTML(true);
                   $mail->Subject = 'Forgot Password';
                   $mail->Body    = 'UserName:' . $user . "<br>" . "Password:" . $pass;
                   $mail->AltBody = 'Test';
                   $mail->SMTPDebug  = 0;
                   $mail->send();
-                } catch (Exception $e) {
+              } catch (Exception $e) {
                   echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                }
+                  // {$mail->ErrorInfo}
+              }              
               }
               mysqli_close($conn);
               ?>
