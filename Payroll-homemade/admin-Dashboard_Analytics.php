@@ -126,40 +126,30 @@ $username = "root";
 $password = "";
 $dbname = "payroll_db";
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password,$dbname);
-
-// Check connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-// Query the database to retrieve the data
 $result = mysqli_query($conn, 'SELECT Emp_Name, Salary FROM payroll_db.employee_data order by Salary Desc');
-
-// Create an array to hold the data for the chart
 $data = array();
 
-// Loop through the query results and add each row to the data array
 while ($row = mysqli_fetch_assoc($result)) {
   $data[] = array($row['Emp_Name'], (float)$row['Salary']);
 }
 
-// Encode the data array as JSON format
 $jsonData = json_encode($data);
-
 $resultPie = mysqli_query($conn, 'SELECT Present, Absent, Late FROM employee_data');
 
-// Fetch the data and calculate the percentage of each category
 $row = mysqli_fetch_assoc($resultPie);
 $total = $row['Present'] + $row['Absent'] + $row['Late'];
 $present_percentage = round($row['Present'] / $total * 100, 2);
 $absent_percentage = round($row['Absent'] / $total * 100, 2);
 $late_percentage = round($row['Late'] / $total * 100, 2);
 
-// Close the database connection
 mysqli_close($conn);
 ?>
+
 <body>
   <div id="Page_Nav">
     <img src="https://cdn.pixabay.com/photo/2016/09/05/18/54/texture-1647380_960_720.jpg" alt="logo" id="logoC">
@@ -173,62 +163,71 @@ mysqli_close($conn);
   </div>
 
   <div id="Page_Content">
-  <div id="chart"></div>
-  <div id="piechart"></div>
+    <div id="chart"></div>
+    <div id="piechart"></div>
 
   </div>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
-		// Load the Google Charts library
-		google.charts.load('current', {'packages':['corechart']});
+    // Load the Google Charts library
+    google.charts.load('current', {
+      'packages': ['corechart']
+    });
 
-		// Set a callback function to draw the chart when the library is loaded
-		google.charts.setOnLoadCallback(drawChart);
+    // Set a callback function to draw the chart when the library is loaded
+    google.charts.setOnLoadCallback(drawChart);
 
-		function drawChart() {
-			// Load the JSON data
-			var jsonData = <?php echo $jsonData; ?>;
+    function drawChart() {
+      // Load the JSON data
+      var jsonData = <?php echo $jsonData; ?>;
 
-			// Create a DataTable object from the JSON data
-			var data = new google.visualization.DataTable();
-			data.addColumn('string', 'Employee Name');
-			data.addColumn('number', 'Salary');
-			data.addRows(jsonData);
+      // Create a DataTable object from the JSON data
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Employee Name');
+      data.addColumn('number', 'Salary');
+      data.addRows(jsonData);
 
-			// Define the chart options
-			var options = {
-				title: 'Employee Salary Bar Chart',
-				width: 600,
-				height: 400,
-				bar: {groupWidth: "95%"},
-				legend: {position: 'none'}
-			};
+      // Define the chart options
+      var options = {
+        title: 'Employee Salary Bar Chart',
+        width: 600,
+        height: 400,
+        bar: {
+          groupWidth: "95%"
+        },
+        legend: {
+          position: 'none'
+        }
+      };
 
-			// Create a BarChart object and draw the chart
-			var chart = new google.visualization.BarChart(document.getElementById('chart'));
-			chart.draw(data, options);
-		}
+      // Create a BarChart object and draw the chart
+      var chart = new google.visualization.BarChart(document.getElementById('chart'));
+      chart.draw(data, options);
+    }
 
     //Pie Chart
-    google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChartPie);
+    google.charts.load("current", {
+      packages: ["corechart"]
+    });
+    google.charts.setOnLoadCallback(drawChartPie);
 
-  function drawChartPie() {
-    var dataPie = google.visualization.arrayToDataTable([
-      ['Status', 'Percentage'],
-      ['Present', <?php echo $present_percentage; ?>],
-      ['Absent', <?php echo $absent_percentage; ?>],
-      ['Late', <?php echo $late_percentage; ?>]
-    ]);
+    function drawChartPie() {
+      var dataPie = google.visualization.arrayToDataTable([
+        ['Status', 'Percentage'],
+        ['Present', <?php echo $present_percentage; ?>],
+        ['Absent', <?php echo $absent_percentage; ?>],
+        ['Late', <?php echo $late_percentage; ?>]
+      ]);
 
-    var optionsPie = {
-      title: 'Employee Percentage',
-          pieHole: 0.4,
-    };
+      var optionsPie = {
+        title: 'Employee Percentage',
+        pieHole: 0.4,
+      };
 
-    var chartPie = new google.visualization.PieChart(document.getElementById('piechart'));
-    chartPie.draw(dataPie, optionsPie);
-      }
-	</script>
+      var chartPie = new google.visualization.PieChart(document.getElementById('piechart'));
+      chartPie.draw(dataPie, optionsPie);
+    }
+  </script>
 </body>
+
 </html>
