@@ -156,9 +156,9 @@ mysqli_close($conn);
     <h6>Role:</h6>
     <h6>Name:</h6>
     <button class="button-19" onclick="window.location.href='Admin-Dashboard.php'">Employee Dashboard</button>
-    <button class="button-19">Employee Status</button>
-    <button class="button-19">Employee Time keeping</button>
-    <button class="button-19 ActivePage" id="EmpDashAnalytics">Employee Analytics</button>
+    <button class="button-19" onclick="window.location.href='Admin-empStats.php'">Employee Status</button>
+    <button class="button-19" onclick="window.location.href='Admin-empTK.php'">Employee Time keeping</button>
+    <button class="button-19 ActivePage" onclick="window.location.href='Admin-Dashboard_Analytics.php'">Employee Analytics</button>
     <button class="button-19 ClsLogOut" onclick="window.location.href='welcomepage.php'">Log Out</button>
   </div>
 
